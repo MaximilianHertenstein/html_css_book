@@ -1,12 +1,7 @@
-playground-html-css {
-  display: block;
-  margin: 1.5rem 0;
-}
+
 
 /* Editoren und Vorschau untereinander in voller Breite. */
 .playground-html-css {
-  border: var(--playground-border);
-  border-radius: 6px;
   overflow: hidden;
   background: #fff;
 }
@@ -16,20 +11,13 @@ playground-html-css {
 }
 
 .playground-html-css-header {
-  padding: 0.5rem 0.75rem;
+  padding: 0.5rem;
   font-size: 0.9rem;
-  font-weight: 600;
-  background: var(--playground-tab-bar-background);
-  border-bottom: var(--playground-border);
 }
 
-.playground-html-css-editors playground-file-editor {
-  display: block;
-  height: 120px; /* Fallback bis zur ersten Messung */
-}
+
 
 playground-preview.playground-html-css-preview {
-  display: block;
   height: 140px; /* Fallback bis zur ersten Messung */
   border-top: var(--playground-border);
 }
