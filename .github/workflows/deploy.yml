@@ -1,0 +1,71 @@
+# Baut das mdBook (inkl. Playground-Bundle) und deployed es auf GitHub Pages.
+# Einmalig unter Settings → Pages als Quelle "GitHub Actions" auswählen.
+
+name: Auf GitHub Pages deployen
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  bauen:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Repository auschecken
+        uses: actions/checkout@v4
+
+      - name: Node.js einrichten
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: mdBook installieren
+        uses: peaceiris/actions-mdbook@v2
+        with:
+          mdbook-version: latest
+
+      - name: npm-Abhängigkeiten installieren
+        run: npm ci
+
+      - name: Playground-Bundle bauen
+        run: npm run build
+
+      - name: mdBook bauen
+        run: mdbook build
+
+      - name: .nojekyll erstellen
+        run: touch book/.nojekyll
+
+      - name: GitHub Pages konfigurieren
+        uses: actions/configure-pages@v5
+
+      - name: Website als Artifact hochladen
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: book/
+
+  deployen:
+    needs: bauen
+    runs-on: ubuntu-latest
+
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - name: Auf GitHub Pages deployen
+        id: deployment
+        uses: actions/deploy-pages@v4
