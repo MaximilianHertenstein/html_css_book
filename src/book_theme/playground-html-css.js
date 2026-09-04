@@ -58,7 +58,16 @@ class PlaygroundHtmlCss extends HTMLElement {
       previewEl = preview(project);
       // Unsichtbar, bis die erste echte Messung sitzt (sonst Geflacker).
       previewEl.style.visibility = "hidden";
-      root.appendChild(section("Vorschau", previewEl, "playground-html-css-preview"));
+      const box = section("Vorschau", previewEl, "playground-html-css-preview");
+      // Eigener Reload-Button in der Kopfzeile (Toolbar ist ausgeblendet).
+      const reload = document.createElement("button");
+      reload.className = "playground-html-css-reload";
+      reload.textContent = "↻";
+      reload.title = "Vorschau neu laden";
+      reload.setAttribute("aria-label", "Vorschau neu laden");
+      reload.addEventListener("click", () => previewEl.reload());
+      box.querySelector(".playground-html-css-header").appendChild(reload);
+      root.appendChild(box);
     } else {
       root.classList.add("playground-html-css--solo");
     }
@@ -118,16 +127,41 @@ function setHeight(el, h, cap) {
 // die höhere Seite – ist die Vorschau kürzer, füllt sie auf (wie ein
 // Browserfenster); ist sie länger, bleibt links unten ruhig Luft.
 // Alle Messwerte sind layout-unabhängig, daher keine Anpassungsschleife.
+// CodeMirror malt bei Fokus einen gepunkteten Rahmen (.cm-focused).
+// Von außen nicht per CSS erreichbar (Shadow-DOM ohne Part),
+// daher hier direkt im offenen Shadow-Root abstellen.
+function injectNofocus(ce) {
+  const root = ce.shadowRoot;
+  if (!root || root.querySelector("style[data-nofocus]")) return;
+  const style = document.createElement("style");
+  style.setAttribute("data-nofocus", "");
+  style.textContent = ".cm-editor.cm-focused{outline:none !important}";
+  root.appendChild(style);
+}
+
 async function equalizeHeights(root, fileEditors, previewEl) {
+  // Warte auf die inneren Editoren: Die Projektdateien laden asynchron,
+  // vorher rendert der File-Editor noch keinen Code-Editor.
   const editors = [];
-  for (const fe of fileEditors) {
-    await fe.updateComplete;
-    const ce = fe.shadowRoot.querySelector("playground-code-editor");
-    if (!ce) continue;
-    await ce.updateComplete;
-    const content = ce.shadowRoot.querySelector(".cm-content");
-    if (!content) continue;
-    editors.push({ fe, ce, content });
+  for (let attempt = 0; attempt < 50 && editors.length < fileEditors.length; attempt++) {
+    editors.length = 0;
+    for (const fe of fileEditors) {
+      try {
+        await fe.updateComplete;
+        const ce = fe.shadowRoot?.querySelector("playground-code-editor");
+        if (!ce) continue;
+        injectNofocus(ce);
+        await ce.updateComplete;
+        const content = ce.shadowRoot?.querySelector(".cm-content");
+        if (!content) continue;
+        editors.push({ fe, ce, content });
+      } catch {
+        // Noch nicht bereit – nächster Versuch.
+      }
+    }
+    if (editors.length < fileEditors.length) {
+      await new Promise((r) => setTimeout(r, 200));
+    }
   }
 
   let iframe = null;
@@ -153,6 +187,11 @@ async function equalizeHeights(root, fileEditors, previewEl) {
   const previewBox = root.querySelector(".playground-html-css-preview");
 
   const layout = () => {
+    // Injektion nachholen, falls beim Init das Shadow-Root noch fehlte.
+    for (const fe of fileEditors) {
+      const ce = fe.shadowRoot?.querySelector("playground-code-editor");
+      if (ce) injectNofocus(ce);
+    }
     const headerH = headerEl?.offsetHeight || 23;
     // Zwei Spalten nebeneinander? (Sonst: natürliche Höhen.)
     const tracks = getComputedStyle(root).gridTemplateColumns.split(" ").length;

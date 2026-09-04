@@ -46,14 +46,18 @@ npm run build   # fertiges Buch in book/
 
 `serve` und `build` rufen vorher `npm run playground` auf:
 Die 4 Playground-Laufzeitdateien werden aus `node_modules` nach `src/` kopiert
-und das ES-Modul-Bundle `src/book_theme/playground-bundle.js` wird mit esbuild erzeugt.
+und das ES-Modul-Bundle `src/book_theme/playground-bundle.<hash>.js`
+wird mit esbuild erzeugt. Der Hash im Dateinamen macht jede Version
+eindeutig, sodass der Browser nie altes JS mit neuem CSS mischt;
+`head.hbs` wird dazu passend aus `scripts/head.hbs.tmpl` erzeugt.
 Generierte Dateien stehen in `.gitignore` und werden nicht gepflegt.
 
 ## Dateien
 
 ```text
 scripts/build-playground.js              Laufzeitdateien kopieren + Bundle bauen
-src/book_theme/head.hbs                  lädt das Bundle als ES-Modul
+scripts/head.hbs.tmpl                    Vorlage für head.hbs (wird generiert)
+src/book_theme/head.hbs                  lädt das Bundle als ES-Modul (generiert)
 src/book_theme/playground-html-css.js    <playground-html-css>: Editoren links, Vorschau rechts
 src/book_theme/playground-html-css.css   nur Abstand um die Beispiele
 book.toml                                bindet Theme und CSS ein
