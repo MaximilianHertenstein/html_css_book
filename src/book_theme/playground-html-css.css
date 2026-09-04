@@ -16,9 +16,6 @@ playground-html-css {
 }
 
 .playground-html-css-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
   padding: 0.5rem 0.75rem;
   font-size: 0.9rem;
   font-weight: 600;
@@ -26,32 +23,13 @@ playground-html-css {
   border-bottom: var(--playground-border);
 }
 
-/* Eigener Reload-Button in der Kopfzeile, groß wie der Titel. */
-.playground-html-css-reload {
-  background: none;
-  border: none;
-  padding: 0;
-  font: inherit;
-  line-height: 1;
-  color: inherit;
-  cursor: pointer;
-}
-
-/* Die Toolbar der Vorschau entfällt (Titel + Button stehen oben). */
-.playground-html-css-preview playground-preview::part(preview-toolbar) {
-  display: none;
-}
-
 .playground-html-css-editors playground-file-editor {
   display: block;
   height: 120px; /* Fallback bis zur ersten Messung */
 }
 
-.playground-html-css-preview {
-  border-top: var(--playground-border);
-}
-
-.playground-html-css-preview playground-preview {
+playground-preview.playground-html-css-preview {
   display: block;
   height: 140px; /* Fallback bis zur ersten Messung */
+  border-top: var(--playground-border);
 }

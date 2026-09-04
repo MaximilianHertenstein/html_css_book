@@ -52,16 +52,8 @@ class PlaygroundHtmlCss extends HTMLElement {
       previewEl.project = project;
       // Unsichtbar, bis die erste echte Messung sitzt (sonst Geflacker).
       previewEl.style.visibility = "hidden";
-      const box = section("Vorschau", previewEl, "playground-html-css-preview");
-      const reload = document.createElement("button");
-      reload.type = "button";
-      reload.className = "playground-html-css-reload";
-      reload.textContent = "↻";
-      reload.title = "Vorschau neu laden";
-      reload.setAttribute("aria-label", "Vorschau neu laden");
-      reload.addEventListener("click", () => previewEl.reload());
-      box.querySelector(".playground-html-css-header").appendChild(reload);
-      root.appendChild(box);
+      previewEl.className = "playground-html-css-preview";
+      root.appendChild(previewEl);
     }
 
     this.replaceChildren(project, root);
