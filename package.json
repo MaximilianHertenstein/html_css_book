@@ -5,7 +5,7 @@
   "scripts": {
     "playground": "node scripts/build-playground.js",
     "serve": "npm run playground && mdbook serve",
-    "build": "npm run playground  && mdbook clean && mdbook build"
+    "build": "npm run playground && mdbook clean && mdbook build"
   },
   "dependencies": {
     "playground-elements": "0.21.2"

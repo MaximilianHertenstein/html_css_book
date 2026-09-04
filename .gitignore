@@ -2,6 +2,7 @@
 book/
 
 # Generiert durch npm run playground (nicht pflegen)
+src/book_theme/playground-bundle.js
 src/book_theme/playground-bundle.*.js
 src/book_theme/playground-typescript-worker.js
 src/book_theme/internal/

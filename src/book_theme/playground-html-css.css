@@ -53,7 +53,7 @@ playground-html-css {
 
 .playground-html-css-editors playground-file-editor {
   display: block;
-  height: 120px; /* Fallback, bis fitEditor() die exakte Höhe setzt */
+  height: 120px; /* Fallback bis zur ersten Messung */
 }
 
 .playground-html-css-preview {
@@ -63,7 +63,7 @@ playground-html-css {
 }
 
 .playground-html-css-preview playground-preview {
-  min-height: 140px; /* Fallback, bis fitPreview() die exakte Höhe setzt */
+  min-height: 140px; /* Fallback bis zur ersten Messung */
 }
 
 /* Schmale Bildschirme: alles untereinander. */

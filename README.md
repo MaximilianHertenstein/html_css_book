@@ -59,7 +59,7 @@ scripts/build-playground.js              Laufzeitdateien kopieren + Bundle bauen
 scripts/head.hbs.tmpl                    Vorlage für head.hbs (wird generiert)
 src/book_theme/head.hbs                  lädt das Bundle als ES-Modul (generiert)
 src/book_theme/playground-html-css.js    <playground-html-css>: Editoren links, Vorschau rechts
-src/book_theme/playground-html-css.css   nur Abstand um die Beispiele
+src/book_theme/playground-html-css.css   Layout: Editoren links, Vorschau rechts
 book.toml                                bindet Theme und CSS ein
 ```
 
