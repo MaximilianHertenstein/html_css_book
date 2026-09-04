@@ -1,0 +1,60 @@
+playground-html-css {
+  display: block;
+  margin: 1.5rem 0;
+}
+
+/* Links Editoren untereinander, rechts die Vorschau (jeweils exakt halbe Breite).
+   Beide Spalten sind stets gleich hoch (Grid-Streckung); die kürzere Seite
+   bleibt bis unten weiß. */
+.playground-html-css {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  border: var(--playground-border);
+  border-radius: 6px;
+  overflow: hidden;
+  background: #fff;
+}
+
+/* Nur CSS, keine Vorschau: volle Breite. */
+.playground-html-css--solo {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.playground-html-css-editors > * + * {
+  border-top: var(--playground-border);
+}
+
+.playground-html-css-header {
+  padding: 0.5rem 0.75rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  background: var(--playground-tab-bar-background);
+  border-bottom: var(--playground-border);
+}
+
+.playground-html-css-editors playground-file-editor {
+  display: block;
+  height: 120px; /* Fallback, bis fitEditor() die exakte Höhe setzt */
+}
+
+.playground-html-css-preview {
+  display: flex;
+  flex-direction: column;
+  border-left: var(--playground-border);
+}
+
+.playground-html-css-preview playground-preview {
+  min-height: 140px; /* Fallback, bis fitPreview() die exakte Höhe setzt */
+}
+
+/* Schmale Bildschirme: alles untereinander. */
+@media (max-width: 700px) {
+  .playground-html-css {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .playground-html-css-preview {
+    border-left: none;
+    border-top: var(--playground-border);
+  }
+}

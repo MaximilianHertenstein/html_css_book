@@ -1,0 +1,6 @@
+book
+src/book_theme/playground-bundle.js
+src/book_theme/playground-typescript-worker.js
+src/book_theme/internal/typescript.js
+src/playground/playground-service-worker.js
+src/playground/playground-service-worker-proxy.html

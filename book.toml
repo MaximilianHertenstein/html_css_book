@@ -1,0 +1,10 @@
+[book]
+title = "html_css_book"
+authors = ["MaximilianHertenstein"]
+language = "de"
+[output.html]
+theme = "src/book_theme"
+
+additional-css = [
+    "src/book_theme/playground-html-css.css"
+]
