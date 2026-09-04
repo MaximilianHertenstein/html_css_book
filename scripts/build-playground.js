@@ -58,9 +58,12 @@ const hashed = `playground-bundle.${hash}.js`;
 copy(`${theme}/playground-bundle.js`, `${theme}/${hashed}`);
 rm(`${theme}/playground-bundle.js`);
 
-// head.hbs aus dem Template erzeugen (mdBook lädt das Bundle als ES-Modul;
+// head.hbs aus Vorlage erzeugen (mdBook lädt das Bundle als ES-Modul;
 // nicht über additional-js, da import.meta sonst bricht).
-const template = read("scripts/head.hbs.tmpl", "utf8");
-write(`${theme}/head.hbs`, template.replace("__HASH__", hash));
+// Vorlage hier eingebettet (keine eigene Datei nötig).
+write(
+  `${theme}/head.hbs`,
+  `<script type="module"\n        src="{{ path_to_root }}book_theme/${hashed}">\n</script>\n`
+);
 
 console.log(`Playground vorbereitet (${hashed}).`);

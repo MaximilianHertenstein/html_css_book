@@ -48,7 +48,8 @@ class PlaygroundHtmlCss extends HTMLElement {
 
     let previewEl = null;
     if (htmlText) {
-      previewEl = preview(project);
+      previewEl = document.createElement("playground-preview");
+      previewEl.project = project;
       // Unsichtbar, bis die erste echte Messung sitzt (sonst Geflacker).
       previewEl.style.visibility = "hidden";
       const box = section("Vorschau", previewEl, "playground-html-css-preview");
@@ -87,12 +88,6 @@ function editor(project, filename, code) {
   const lines = code.split("\n").length;
   editor.style.height = `${Math.min(Math.max(lines * 20 + 16, 40), EDITOR_MAX_HEIGHT)}px`;
   return editor;
-}
-
-function preview(project) {
-  const preview = document.createElement("playground-preview");
-  preview.project = project;
-  return preview;
 }
 
 function section(title, element, cls) {
