@@ -24,19 +24,16 @@ h1 {
 ```
 
 Je ein `script`-Tag pro Sprache genügt. Daraus werden automatisch
-links HTML- und CSS-Editor untereinander und rechts die Live-Vorschau aufgebaut
+HTML-Editor, CSS-Editor und darunter die Live-Vorschau aufgebaut
 (Custom-Layout aus `playground-project`, `playground-file-editor`, `playground-preview`).
 CSS wird automatisch als `style.css` eingebunden — im Markdown ist kein `<link>` nötig.
 Jeder Editor sitzt auf seinem Inhalt (knapp darüber, ohne zu springen);
-die Zeile wird so hoch wie die höhere Seite, beide Spalten stets gleich
-hoch (Deckel: 400px bzw. 600px, danach mit Scrollbalken).
+die Vorschau passt sich der gerenderten Seite an
+(Deckel: 400px bzw. 600px, danach mit Scrollbalken).
 
-## Voraussetzungen
+## Voraussetzungen, Installation, Befehle
 
-* [mdBook](https://rust-lang.github.io/mdBook/)
-* Node.js + npm
-
-## Installation und Befehle
+Benötigt: [mdBook](https://rust-lang.github.io/mdBook/), Node.js + npm.
 
 ```bash
 npm install     # playground-elements + esbuild installieren
@@ -57,7 +54,7 @@ Generierte Dateien stehen in `.gitignore` und werden nicht gepflegt.
 ```text
 scripts/build-playground.js              Laufzeitdateien kopieren + Bundle bauen
 src/book_theme/head.hbs                  lädt das Bundle als ES-Modul (generiert)
-src/book_theme/playground-html-css.js    <playground-html-css>: Editoren links, Vorschau rechts
+src/book_theme/playground-html-css.js    <playground-html-css>: Editoren + Vorschau untereinander
 src/book_theme/playground-html-css.css   Layout: Editoren links, Vorschau rechts
 book.toml                                bindet Theme und CSS ein
 ```

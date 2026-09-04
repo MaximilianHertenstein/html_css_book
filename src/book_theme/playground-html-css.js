@@ -1,5 +1,5 @@
 // <playground-html-css>: interaktive HTML/CSS-Beispiele –
-// links Editoren untereinander, rechts Live-Vorschau, beide Spalten gleich hoch.
+// Editoren und Live-Vorschau untereinander in voller Breite.
 // Verwendung im Markdown siehe README.
 
 const EDITOR_MAX_HEIGHT = 400;
@@ -62,8 +62,6 @@ class PlaygroundHtmlCss extends HTMLElement {
       reload.addEventListener("click", () => previewEl.reload());
       box.querySelector(".playground-html-css-header").appendChild(reload);
       root.appendChild(box);
-    } else {
-      root.classList.add("playground-html-css--solo");
     }
 
     this.replaceChildren(project, root);
@@ -86,7 +84,7 @@ function editor(project, filename, code) {
   editor.lineNumbers = true;
   // Starthöhe aus der Zeilenzahl (~20px/Zeile): nah am Endergebnis.
   const lines = code.split("\n").length;
-  editor.style.height = `${Math.min(Math.max(lines * 20 + 16, 40), EDITOR_MAX_HEIGHT)}px`;
+  editor.style.height = `${Math.min(lines * 20 + 16, EDITOR_MAX_HEIGHT)}px`;
   return editor;
 }
 
@@ -116,8 +114,6 @@ function injectNofocus(ce) {
 // Innere Elemente werden bei jedem Durchgang faul aufgelöst (Projektdateien
 // laden asynchron nach). Schreiben ist idempotent, daher keine Schleife.
 function fitSizes(root, fileEditors, previewEl, project) {
-  const headerEl = root.querySelector(".playground-html-css-header");
-
   let iframe = null; // Vorschau-iframe, sobald gerendert
   let toolbarH = 41;
 
@@ -165,9 +161,9 @@ function fitSizes(root, fileEditors, previewEl, project) {
     if (previewEl && !iframe) {
       iframe = previewEl.shadowRoot?.querySelector("iframe") ?? null;
       if (iframe) {
-        toolbarH =
-          previewEl.shadowRoot?.querySelector("#toolbar")?.getBoundingClientRect()
-            .height || 41;
+        // Ausgeblendete Toolbar misst 0 – das ist korrekt so (kein ||, das 0 schluckt!).
+        const bar = previewEl.shadowRoot?.querySelector("#toolbar");
+        toolbarH = bar ? bar.getBoundingClientRect().height : 41;
         iframe.addEventListener("load", layout);
         try {
           iframe.contentDocument?.fonts?.ready.then(layout);
@@ -177,23 +173,16 @@ function fitSizes(root, fileEditors, previewEl, project) {
       }
     }
 
-    const headerH = headerEl?.offsetHeight || 23;
-    const sideBySide =
-      getComputedStyle(root).gridTemplateColumns.split(" ").length > 1 &&
-      eds.length > 0 &&
-      previewEl;
-
     // Editoren: Inhaltshöhe + kleine Luft, ganze Pixel.
-    const heights = eds.map(({ ce, content }) => {
-      const lines = Math.max((ce.value ?? "").split("\n").length, 1);
+    // ("".split liefert [""] – daher keine Sonderfälle nötig.)
+    for (const { fe, ce, content } of eds) {
+      const lines = (ce.value ?? "").split("\n").length;
       const line = content.querySelector(".cm-line");
       const lh = line?.getBoundingClientRect().height || 19;
       const cs = getComputedStyle(content);
       const pad = parseFloat(cs.paddingTop) + parseFloat(cs.paddingBottom);
-      return Math.min(Math.ceil(lines * lh + pad) + 6, EDITOR_MAX_HEIGHT);
-    });
-
-    heights.forEach((h, i) => (eds[i].fe.style.height = `${h}px`));
+      fe.style.height = `${Math.min(Math.ceil(lines * lh + pad) + 6, EDITOR_MAX_HEIGHT)}px`;
+    }
     if (!previewEl) return;
 
     let contentH = 0;
@@ -205,13 +194,7 @@ function fitSizes(root, fileEditors, previewEl, project) {
     } catch {
       // Sandbox noch nicht bereit.
     }
-    const previewH = Math.min(Math.ceil(contentH) + toolbarH + 8, PREVIEW_MAX_HEIGHT);
-    // Zeile so hoch wie die höhere Seite (plus 1px Trennlinie je weiterem Editor).
-    const left =
-      heights.length * headerH + heights.reduce((a, b) => a + b, 0) + (heights.length - 1);
-    const want = sideBySide
-      ? Math.max(left, headerH + previewH) - headerH
-      : previewH;
+    const want = Math.min(Math.ceil(contentH) + toolbarH + 8, PREVIEW_MAX_HEIGHT);
     // Während Reload (leerer iframe) nicht schrumpfen.
     if (live || !shown) previewEl.style.height = `${want}px`;
     if (live) show();
