@@ -66,7 +66,7 @@ class PlaygroundHtmlCss extends HTMLElement {
     }
 
     this.replaceChildren(project, root);
-    fitSizes(root, fileEditors, previewEl);
+    fitSizes(root, fileEditors, previewEl, project);
   }
 }
 
@@ -117,46 +117,14 @@ function injectNofocus(ce) {
   root.appendChild(style);
 }
 
-// Misst einmal und setzt Höhen. Schreibt nur, liest nie als Reaktion
-// aufs eigene Schreiben zurück – daher kann nichts flackern oder loopen.
-// Auslöser sind ausschließlich äußere Ereignisse:
-// Projektdateien da, Vorschau (neu) geladen, Fonts fertig,
-// Fenstergröße, Sicherheitsnetz-Timer.
-async function fitSizes(root, fileEditors, previewEl) {
-  // Warte auf die inneren Editoren (Projektdateien laden asynchron).
-  const editors = [];
-  for (let attempt = 0; attempt < 50 && editors.length < fileEditors.length; attempt++) {
-    editors.length = 0;
-    for (const fe of fileEditors) {
-      try {
-        await fe.updateComplete;
-        const ce = fe.shadowRoot?.querySelector("playground-code-editor");
-        if (!ce) continue;
-        injectNofocus(ce);
-        await ce.updateComplete;
-        const content = ce.shadowRoot?.querySelector(".cm-content");
-        if (!content) continue;
-        editors.push({ fe, ce, content });
-      } catch {
-        // Noch nicht bereit – nächster Versuch.
-      }
-    }
-    if (editors.length < fileEditors.length) {
-      await new Promise((r) => setTimeout(r, 200));
-    }
-  }
-
+// Misst und setzt Höhen – rein ereignisgetrieben, ohne Warten und Polling:
+// Innere Elemente werden bei jedem Durchgang faul aufgelöst (Projektdateien
+// laden asynchron nach). Schreiben ist idempotent, daher keine Schleife.
+function fitSizes(root, fileEditors, previewEl, project) {
   const headerEl = root.querySelector(".playground-html-css-header");
 
-  let iframe = null;
+  let iframe = null; // Vorschau-iframe, sobald gerendert
   let toolbarH = 41;
-  if (previewEl) {
-    await previewEl.updateComplete;
-    iframe = previewEl.shadowRoot.querySelector("iframe");
-    toolbarH =
-      previewEl.shadowRoot.querySelector("#toolbar")?.getBoundingClientRect()
-        .height || 41;
-  }
 
   let shown = !previewEl;
   const show = () => {
@@ -166,21 +134,62 @@ async function fitSizes(root, fileEditors, previewEl) {
   };
   setTimeout(show, 3000);
 
+  let timer = 0;
+  const refit = () => {
+    clearTimeout(timer);
+    timer = setTimeout(layout, 150);
+  };
+
+  // Lebend-Zustand pro Editor: Playground ersetzt innere Elemente beim
+  // Nachladen (z. B. Projektdateien) – daher bei jedem Durchgang frisch
+  // auflösen statt Referenzen zu cachen (alte Knoten liefern sonst
+  // abgehängte Metriken und verlieren injizierte Styles mit).
+  const states = fileEditors.map(() => ({ content: null, obs: null }));
+
   const layout = () => {
-    // Injektion nachholen, falls beim Init das Shadow-Root noch fehlte.
-    for (const fe of fileEditors) {
+    const eds = [];
+    for (let i = 0; i < fileEditors.length; i++) {
+      const fe = fileEditors[i];
       const ce = fe.shadowRoot?.querySelector("playground-code-editor");
-      if (ce) injectNofocus(ce);
+      const content = ce?.shadowRoot?.querySelector(".cm-content");
+      if (!ce || !content) return; // unvollständig – später erneut versuchen
+      injectNofocus(ce);
+      const st = states[i];
+      if (st.content !== content) {
+        st.obs?.disconnect();
+        st.content = content;
+        st.obs = new MutationObserver(refit);
+        st.obs.observe(content, {
+          childList: true,
+          characterData: true,
+          subtree: true,
+        });
+      }
+      eds.push({ fe, ce, content });
+    }
+    if (previewEl && !iframe) {
+      iframe = previewEl.shadowRoot?.querySelector("iframe") ?? null;
+      if (iframe) {
+        toolbarH =
+          previewEl.shadowRoot?.querySelector("#toolbar")?.getBoundingClientRect()
+            .height || 41;
+        iframe.addEventListener("load", layout);
+        try {
+          iframe.contentDocument?.fonts?.ready.then(layout);
+        } catch {
+          // Sandbox noch nicht bereit – load-Listener greift dann.
+        }
+      }
     }
 
     const headerH = headerEl?.offsetHeight || 23;
     const sideBySide =
       getComputedStyle(root).gridTemplateColumns.split(" ").length > 1 &&
-      editors.length > 0 &&
+      eds.length > 0 &&
       previewEl;
 
     // Editoren: Inhaltshöhe + kleine Luft, ganze Pixel.
-    const heights = editors.map(({ ce, content }) => {
+    const heights = eds.map(({ ce, content }) => {
       const lines = Math.max((ce.value ?? "").split("\n").length, 1);
       const line = content.querySelector(".cm-line");
       const lh = line?.getBoundingClientRect().height || 19;
@@ -189,7 +198,7 @@ async function fitSizes(root, fileEditors, previewEl) {
       return Math.min(Math.ceil(lines * lh + pad) + 6, EDITOR_MAX_HEIGHT);
     });
 
-    heights.forEach((h, i) => (editors[i].fe.style.height = `${h}px`));
+    heights.forEach((h, i) => (eds[i].fe.style.height = `${h}px`));
     if (!previewEl) return;
 
     let contentH = 0;
@@ -214,26 +223,7 @@ async function fitSizes(root, fileEditors, previewEl) {
   };
 
   layout();
-  // Bei Eingaben nachjustieren (entprellt; Schreiben ist idempotent,
-  // daher keine Schleife möglich).
-  let timer = 0;
-  const refit = () => {
-    clearTimeout(timer);
-    timer = setTimeout(layout, 150);
-  };
-  for (const { content } of editors) {
-    new MutationObserver(refit).observe(content, {
-      childList: true,
-      characterData: true,
-      subtree: true,
-    });
-  }
-  iframe?.addEventListener("load", layout);
-  try {
-    iframe?.contentDocument?.fonts?.ready.then(layout);
-  } catch {
-    // Sandbox noch nicht bereit – load-Listener greift dann.
-  }
+  project.addEventListener("filesChanged", layout);
   window.addEventListener("resize", layout);
   for (const ms of [2500, 8000, 20000]) setTimeout(layout, ms);
 }
