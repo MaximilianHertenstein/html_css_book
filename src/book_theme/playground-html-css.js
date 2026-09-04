@@ -1,7 +1,4 @@
-// <playground-html-css>: interaktive HTML/CSS-Beispiele –
-// Editoren und Live-Vorschau untereinander in voller Breite.
-// Verwendung im Markdown siehe README.
-
+// <playground-html-css>: interaktive HTML/CSS-Beispiele
 const EDITOR_MAX_HEIGHT = 400;
 const PREVIEW_MAX_HEIGHT = 600;
 
@@ -10,49 +7,61 @@ class PlaygroundHtmlCss extends HTMLElement {
     if (this.done) return;
     this.done = true;
 
-    const html = this.querySelector('script[type="sample/html"]');
-    const css = this.querySelector('script[type="sample/css"]');
+    let html = this.querySelector('script[type="sample/html"]')?.textContent.trim() || "";
+    const css = this.querySelector('script[type="sample/css"]')?.textContent.trim() || "";
+
     if (!html && !css) {
-      console.error("<playground-html-css> enthält weder HTML noch CSS.");
-      return;
+      return console.error("<playground-html-css> enthält weder HTML noch CSS.");
     }
 
-    // Code einmal aufbereiten: CSS wird automatisch eingebunden,
-    // damit im Markdown kein <link> nötig ist.
-    let htmlText = html?.textContent.trim() ?? "";
-    const cssText = css?.textContent.trim() ?? "";
-    if (htmlText && cssText && !htmlText.includes("style.css")) {
-      htmlText = `<link rel="stylesheet" href="style.css">\n${htmlText}`;
+    // CSS automatisch einbinden
+    if (html && css && !html.includes("style.css")) {
+      html = `<link rel="stylesheet" href="style.css">\n${html}`;
     }
-    if (!htmlText && !cssText) return; // Leere Beispiele bauen keine Box.
 
-    const project = document.createElement("playground-project");
-    // Sandbox-Dateien liegen neben dem Bundle (…/book_theme/../playground/).
-    project.sandboxBaseUrl = new URL("../playground/", import.meta.url).href;
-    if (htmlText) project.appendChild(file("sample/html", "index.html", htmlText));
-    if (cssText) project.appendChild(file("sample/css", "style.css", cssText));
+    const project = Object.assign(document.createElement("playground-project"), {
+      sandboxBaseUrl: new URL("../playground/", import.meta.url).href
+    });
 
-    const root = document.createElement("div");
-    root.className = "playground-html-css";
-
-    const editorsBox = document.createElement("div");
-    editorsBox.className = "playground-html-css-editors";
+    const root = Object.assign(document.createElement("div"), { className: "playground-html-css" });
+    const editorsBox = Object.assign(document.createElement("div"), { className: "playground-html-css-editors" });
     const fileEditors = [];
-    for (const [name, code] of [["index.html", htmlText], ["style.css", cssText]]) {
-      if (!code) continue;
-      const ed = editor(project, name, code);
-      fileEditors.push(ed);
-      editorsBox.appendChild(section(name, ed));
-    }
+
+    // Hilfsfunktion zum Erstellen von Datei, Editor und UI-Sektion
+    const addFile = (name, code, type) => {
+      if (!code) return;
+      
+      // 1. Projekt-Datei anlegen
+      const script = Object.assign(document.createElement("script"), { type, textContent: code });
+      script.setAttribute("filename", name);
+      project.appendChild(script);
+
+      // 2. Editor anlegen
+      const editor = Object.assign(document.createElement("playground-file-editor"), {
+        project, filename: name, lineNumbers: true
+      });
+      editor.style.height = `${Math.min(code.split("\n").length * 20 + 16, EDITOR_MAX_HEIGHT)}px`;
+      fileEditors.push(editor);
+
+      // 3. UI-Box anlegen
+      const section = Object.assign(document.createElement("div"), {
+        innerHTML: `<div class="playground-html-css-header">${name}</div>`
+      });
+      section.appendChild(editor);
+      editorsBox.appendChild(section);
+    };
+
+    addFile("index.html", html, "sample/html");
+    addFile("style.css", css, "sample/css");
     root.appendChild(editorsBox);
 
     let previewEl = null;
-    if (htmlText) {
-      previewEl = document.createElement("playground-preview");
-      previewEl.project = project;
-      // Unsichtbar, bis die erste echte Messung sitzt (sonst Geflacker).
+    if (html) {
+      previewEl = Object.assign(document.createElement("playground-preview"), {
+        project, className: "playground-html-css-preview"
+      });
+      // Unsichtbar, bis die erste echte Messung sitzt (sonst Geflacker)
       previewEl.style.visibility = "hidden";
-      previewEl.className = "playground-html-css-preview";
       root.appendChild(previewEl);
     }
 
@@ -61,128 +70,85 @@ class PlaygroundHtmlCss extends HTMLElement {
   }
 }
 
-function file(type, filename, code) {
-  const script = document.createElement("script");
-  script.type = type;
-  script.setAttribute("filename", filename);
-  script.textContent = code;
-  return script;
-}
-
-function editor(project, filename, code) {
-  const editor = document.createElement("playground-file-editor");
-  editor.project = project;
-  editor.filename = filename;
-  editor.lineNumbers = true;
-  // Starthöhe aus der Zeilenzahl (~20px/Zeile): nah am Endergebnis.
-  const lines = code.split("\n").length;
-  editor.style.height = `${Math.min(lines * 20 + 16, EDITOR_MAX_HEIGHT)}px`;
-  return editor;
-}
-
-function section(title, element, cls) {
-  const box = document.createElement("div");
-  if (cls) box.className = cls;
-  const header = document.createElement("div");
-  header.className = "playground-html-css-header";
-  header.textContent = title;
-  box.append(header, element);
-  return box;
-}
-
-// Misst und setzt Höhen – rein ereignisgetrieben, ohne Warten und Polling:
-// Innere Elemente werden bei jedem Durchgang faul aufgelöst (Projektdateien
-// laden asynchron nach). Schreiben ist idempotent, daher keine Schleife.
 function fitSizes(root, fileEditors, previewEl, project) {
-  let iframe = null; // Vorschau-iframe, sobald gerendert
-  let toolbarH = 41;
-
-  let shown = !previewEl;
-  const show = () => {
-    if (shown || !previewEl) return;
-    shown = true;
-    previewEl.style.visibility = "";
-  };
-  setTimeout(show, 3000);
-
-  let timer = 0;
-  const refit = () => {
-    clearTimeout(timer);
-    timer = setTimeout(layout, 150);
-  };
-
-  // Lebend-Zustand pro Editor: Playground ersetzt innere Elemente beim
-  // Nachladen (z. B. Projektdateien) – daher bei jedem Durchgang frisch
-  // auflösen statt Referenzen zu cachen (alte Knoten liefern sonst
-  // abgehängte Metriken und verlieren injizierte Styles mit).
+  let iframe = null, toolbarH = 41, timer = 0, shown = !previewEl, iframeTries = 0;
   const states = fileEditors.map(() => ({ content: null, obs: null }));
 
+  const show = () => {
+    if (!shown && previewEl) {
+      shown = true;
+      previewEl.style.visibility = "";
+    }
+  };
+  
+  // Fallback: Vorschau spätestens nach 3 Sekunden einblenden, falls iframe-Load blockiert
+  setTimeout(show, 3000); 
+
+  const refit = () => { clearTimeout(timer); timer = setTimeout(layout, 150); };
+
   const layout = () => {
-    const eds = [];
+    // 1. Editoren messen (mitwachsen beim Tippen)
     for (let i = 0; i < fileEditors.length; i++) {
       const fe = fileEditors[i];
       const ce = fe.shadowRoot?.querySelector("playground-code-editor");
       const content = ce?.shadowRoot?.querySelector(".cm-content");
-      if (!ce || !content) return; // unvollständig – später erneut versuchen
+      
+      if (!ce || !content) return; // DOM noch nicht bereit -> Abbruch, Event löst später neu aus
+
       const st = states[i];
       if (st.content !== content) {
         st.obs?.disconnect();
         st.content = content;
         st.obs = new MutationObserver(refit);
-        st.obs.observe(content, {
-          childList: true,
-          characterData: true,
-          subtree: true,
-        });
+        st.obs.observe(content, { childList: true, characterData: true, subtree: true });
       }
-      eds.push({ fe, ce, content });
-    }
-    if (previewEl && !iframe) {
-      iframe = previewEl.shadowRoot?.querySelector("iframe") ?? null;
-      if (iframe) {
-        // Ausgeblendete Toolbar misst 0 – das ist korrekt so (kein ||, das 0 schluckt!).
-        const bar = previewEl.shadowRoot?.querySelector("#toolbar");
-        toolbarH = bar ? bar.getBoundingClientRect().height : 41;
-        iframe.addEventListener("load", layout);
-        try {
-          iframe.contentDocument?.fonts?.ready.then(layout);
-        } catch {
-          // Sandbox noch nicht bereit – load-Listener greift dann.
-        }
-      }
-    }
 
-    // Editoren: Inhaltshöhe + kleine Luft, ganze Pixel.
-    // ("".split liefert [""] – daher keine Sonderfälle nötig.)
-    for (const { fe, ce, content } of eds) {
-      const lines = (ce.value ?? "").split("\n").length;
-      const line = content.querySelector(".cm-line");
-      const lh = line?.getBoundingClientRect().height || 19;
+      const lines = (ce.value || "").split("\n").length;
+      const lh = content.querySelector(".cm-line")?.getBoundingClientRect().height || 19;
+      // Padding oben + unten (nicht verdoppelt – wäre bei Asymmetrie falsch).
       const cs = getComputedStyle(content);
       const pad = parseFloat(cs.paddingTop) + parseFloat(cs.paddingBottom);
+      
       fe.style.height = `${Math.min(Math.ceil(lines * lh + pad) + 6, EDITOR_MAX_HEIGHT)}px`;
     }
+
+    // 2. Vorschau messen (mitwachsen basierend auf Inhalt)
     if (!previewEl) return;
 
-    let contentH = 0;
-    let live = false;
-    try {
-      const doc = iframe?.contentDocument;
-      if (doc?.documentElement) contentH = doc.documentElement.scrollHeight;
-      live = (iframe?.src ?? "").includes("__playground_") && contentH > 0;
-    } catch {
-      // Sandbox noch nicht bereit.
+    if (!iframe) {
+      iframe = previewEl.shadowRoot?.querySelector("iframe") || null;
+      if (iframe) {
+        toolbarH = previewEl.shadowRoot?.querySelector("#toolbar")?.getBoundingClientRect()
+          .height ?? 41;
+        iframe.addEventListener("load", layout);
+        iframe.contentDocument?.fonts?.ready.then(layout).catch(()=>{});
+      } else if (iframeTries++ < 40) {
+        // Noch nicht gerendert – begrenzt erneut versuchen (endet von selbst).
+        setTimeout(layout, 500);
+      }
     }
-    const want = Math.min(Math.ceil(contentH) + toolbarH + 8, PREVIEW_MAX_HEIGHT);
-    // Während Reload (leerer iframe) nicht schrumpfen.
-    if (live || !shown) previewEl.style.height = `${want}px`;
-    if (live) show();
+
+    let contentH = 0, live = false;
+    try {
+      contentH = iframe?.contentDocument?.documentElement?.scrollHeight || 0;
+      live = (iframe?.src || "").includes("__playground_") && contentH > 0;
+    } catch {} // Sandbox cross-origin noch nicht bereit
+
+    // Höhe anwenden
+    if (live || !shown) {
+      previewEl.style.height = `${Math.min(Math.ceil(contentH) + toolbarH + 8, PREVIEW_MAX_HEIGHT)}px`;
+    }
+    
+    // Nach erfolgreicher Messung sofort anzeigen
+    if (live) show(); 
   };
 
+  // Initiale Layout-Berechnung und Event-Listener
   layout();
   project.addEventListener("filesChanged", layout);
   window.addEventListener("resize", layout);
-  for (const ms of [2500, 8000, 20000]) setTimeout(layout, ms);
+  
+  // Die unnötigen, harten Fallback-Timeouts wurden hier restlos entfernt.
 }
 
 customElements.define("playground-html-css", PlaygroundHtmlCss);
