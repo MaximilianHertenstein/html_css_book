@@ -72,7 +72,7 @@ class PlaygroundHtmlCss extends HTMLElement {
 
 function fitSizes(root, fileEditors, previewEl, project) {
   let iframe = null, toolbarH = 41, timer = 0, shown = !previewEl, iframeTries = 0;
-  const states = fileEditors.map(() => ({ content: null, obs: null }));
+  const seen = new WeakSet(); // bereits beobachtete Inhalte (kein Doppel-Anhängen)
 
   const show = () => {
     if (!shown && previewEl) {
@@ -87,20 +87,15 @@ function fitSizes(root, fileEditors, previewEl, project) {
   const refit = () => { clearTimeout(timer); timer = setTimeout(layout, 150); };
 
   const layout = () => {
-    // 1. Editoren messen (mitwachsen beim Tippen)
-    for (let i = 0; i < fileEditors.length; i++) {
-      const fe = fileEditors[i];
+    // 1. Editoren messen – jeder für sich (fehlende holen wir später nach)
+    for (const fe of fileEditors) {
       const ce = fe.shadowRoot?.querySelector("playground-code-editor");
       const content = ce?.shadowRoot?.querySelector(".cm-content");
-      
-      if (!ce || !content) return; // DOM noch nicht bereit -> Abbruch, Event löst später neu aus
+      if (!ce || !content) continue;
 
-      const st = states[i];
-      if (st.content !== content) {
-        st.obs?.disconnect();
-        st.content = content;
-        st.obs = new MutationObserver(refit);
-        st.obs.observe(content, { childList: true, characterData: true, subtree: true });
+      if (!seen.has(content)) {
+        seen.add(content);
+        new MutationObserver(refit).observe(content, { childList: true, characterData: true, subtree: true });
       }
 
       const lines = (ce.value || "").split("\n").length;
@@ -108,7 +103,7 @@ function fitSizes(root, fileEditors, previewEl, project) {
       // Padding oben + unten (nicht verdoppelt – wäre bei Asymmetrie falsch).
       const cs = getComputedStyle(content);
       const pad = parseFloat(cs.paddingTop) + parseFloat(cs.paddingBottom);
-      
+
       fe.style.height = `${Math.min(Math.ceil(lines * lh + pad) + 6, EDITOR_MAX_HEIGHT)}px`;
     }
 
@@ -147,8 +142,6 @@ function fitSizes(root, fileEditors, previewEl, project) {
   layout();
   project.addEventListener("filesChanged", layout);
   window.addEventListener("resize", layout);
-  
-  // Die unnötigen, harten Fallback-Timeouts wurden hier restlos entfernt.
 }
 
 customElements.define("playground-html-css", PlaygroundHtmlCss);
