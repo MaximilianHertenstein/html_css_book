@@ -90,18 +90,6 @@ function section(title, element, cls) {
   return box;
 }
 
-// CodeMirror malt bei Fokus einen gepunkteten Rahmen (.cm-focused).
-// Von außen nicht per CSS erreichbar (Shadow-DOM ohne Part),
-// daher hier direkt im offenen Shadow-Root abstellen.
-function injectNofocus(ce) {
-  const root = ce.shadowRoot;
-  if (!root || root.querySelector("style[data-nofocus]")) return;
-  const style = document.createElement("style");
-  style.setAttribute("data-nofocus", "");
-  style.textContent = ".cm-editor.cm-focused{outline:none !important}";
-  root.appendChild(style);
-}
-
 // Misst und setzt Höhen – rein ereignisgetrieben, ohne Warten und Polling:
 // Innere Elemente werden bei jedem Durchgang faul aufgelöst (Projektdateien
 // laden asynchron nach). Schreiben ist idempotent, daher keine Schleife.
@@ -136,7 +124,6 @@ function fitSizes(root, fileEditors, previewEl, project) {
       const ce = fe.shadowRoot?.querySelector("playground-code-editor");
       const content = ce?.shadowRoot?.querySelector(".cm-content");
       if (!ce || !content) return; // unvollständig – später erneut versuchen
-      injectNofocus(ce);
       const st = states[i];
       if (st.content !== content) {
         st.obs?.disconnect();
