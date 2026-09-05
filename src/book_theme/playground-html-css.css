@@ -17,3 +17,11 @@ playground-preview.playground-html-css-preview {
   height: 140px; /* Fallback bis zur ersten Messung */
   border-top: var(--playground-border);
 }
+
+
+img[src$=".svg"] {
+    background-color: white;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}

@@ -3,6 +3,7 @@ title = "html_css_book"
 authors = ["MaximilianHertenstein"]
 language = "de"
 [output.html]
+mathjax-support = true
 theme = "src/book_theme"
 
 additional-css = [
