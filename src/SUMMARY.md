@@ -7,6 +7,7 @@
 - [HTML: Links](./html-links.md)
 - [HTML: Bilder](./html-bilder.md)
 - [HTML: Grundstruktur](./html-grundstruktur.md)
-- [CSS: Grundlagen und Selektoren](./css-grundlagen-selektoren.md)
+- [CSS: Grundlagen und Selektoren](./css-grundlagen-selektoren_typselektoren.md)
+- [CSS: Textformatierung](./css-textformatierung.md)
 - [CSS: ID-Selektoren](./css-id-selektoren.md)
 - [CSS: Klassenselektoren](./css-klassenselektoren.md)
