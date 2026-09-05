@@ -11,6 +11,7 @@
 - [CSS: Einbinden](./css-einbinden.md)
 - [CSS: Grundlagen und Selektoren](./css-grundlagen-selektoren_typselektoren.md)
 - [CSS: Textformatierung](./css-textformatierung.md)
+- [CSS: Farben](./css-farben.md)
 - [CSS: Box-Modell](./css-boxmodell.md)
 - [CSS: ID-Selektoren](./css-id-selektoren.md)
 - [CSS: Klassenselektoren](./css-klassenselektoren.md)
