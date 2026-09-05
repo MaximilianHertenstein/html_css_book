@@ -81,9 +81,21 @@ class PlaygroundHtmlCss extends HTMLElement {
     let timer = 0;
     const fit = () => {
       for (const editor of editors) {
+        // Höhe aus der Zeilenanzahl berechnen, nicht aus scrollHeight:
+        // scrollHeight hängt von der aktuellen Editorhöhe ab und wächst
+        // dadurch bei jedem Tastenschlag (+6px-Schleife).
         const content = editor.shadowRoot
           ?.querySelector("playground-code-editor")?.shadowRoot?.querySelector(".cm-content");
-        if (content) editor.style.height = `${clamp(content.scrollHeight + 6, EDITOR_MAX)}px`;
+        if (!content) continue;
+        const lines = content.querySelectorAll(".cm-line").length;
+        if (!lines) continue;
+        const lineHeight =
+          content.querySelector(".cm-line")?.getBoundingClientRect?.().height || 20;
+        if (!lineHeight) continue;
+        const wanted = clamp(lines * lineHeight + 16, EDITOR_MAX);
+        if (Math.abs((parseFloat(editor.style.height) || 0) - wanted) > 1) {
+          editor.style.height = `${wanted}px`;
+        }
       }
       const frame = preview?.iframe;
       if (frame) {
