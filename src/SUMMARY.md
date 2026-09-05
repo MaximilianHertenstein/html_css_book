@@ -6,3 +6,5 @@
 - [HTML: Tabellen](./html-tabellen.md)
 - [HTML: Grundstruktur, Bilder und Links](./html-grundstruktur-bilder-links.md)
 - [CSS: Grundlagen und Selektoren](./css-grundlagen-selektoren.md)
+- [CSS: ID-Selektoren](./css-id-selektoren.md)
+- [CSS: Klassenselektoren](./css-klassenselektoren.md)
