@@ -26,7 +26,7 @@ h1 {
 Im CSS-Code wird festgelegt, dass alle Texte in einem `<h1>`-Tag blau
 dargestellt werden.
 
-Dabei ist `color` die Eigenschaft und `blue` der zugehoerige Wert.
+Dabei ist `color` die Eigenschaft und `blue` der zugehörige Wert.
 
 ## Weitere wichtige Eigenschaften
 
@@ -94,9 +94,9 @@ Weitere CSS-Eigenschaften findest du in der CSS-Referenz:
 
 ## Typselektoren
 
-In den Beispielen oben haben wir die Formatierung ueber die Namen
+In den Beispielen oben haben wir die Formatierung über die Namen
 bestimmter HTML-Tags festgelegt, zum Beispiel `h1` oder `p`. Ein
-weiteres Beispiel dafuer ist im folgenden Code zu sehen.
+weiteres Beispiel dafür ist im folgenden Code zu sehen.
 
 
 <playground-html-css>

@@ -1,12 +1,10 @@
 # HTML: Listen
 
-In HTML gibt es geordnete Listen, deren Inhalt durchnummeriert wird und
-ungeordnete Listen, bei denen dies nicht der Fall ist. Die
-entsprechenden HTML-Befehle lauten: `<ol>` (*ordered list*) und `<ul>`
-(*unordered list*). Die einzelnen Listenelemente grenzt man durch den
+
+In HTML gibt kannst du mit dem Tag `<ol>` (*ordered list*) eine Liste erstellen, deren Inhalt durchnummeriert wird .
+Die einzelnen Listenelemente grenzt man durch den
 Tag `<li>` voneinander ab. Damit der HTML-Code übersichtlich bleibt, ist
 es sinnvoll, den Code für die einzelnen Listenelemente einzurücken.
-
 
 <playground-html-css>
 
@@ -16,7 +14,16 @@ es sinnvoll, den Code für die einzelnen Listenelemente einzurücken.
   <li> VR China </li>
   <li> Japan </li>
 </ol>
+</script>
+</playground-html-css>
 
+Listen ohne Nummerierung kannst du mit dem Tag`<ul>` erstellen.
+(*unordered list*). 
+
+
+<playground-html-css>
+
+<script type="sample/html">
 <ul>
   <li> Europa </li>
   <li> Asien </li>
@@ -27,3 +34,4 @@ es sinnvoll, den Code für die einzelnen Listenelemente einzurücken.
 </script>
 
 </playground-html-css>
+

@@ -1,9 +1,8 @@
 # HTML: Tabellen
 
-In HTML ist es auch möglich, Tabellen zu erstellen. Die Tabelle selbst
-wird mit dem Befehl `<table>` begonnen. Tabellen enthalten Zeilen, die
+Tabellen kannst du mit dem Befehl `<table>` erstellen. Tabellen enthalten Zeilen, die
 mit `<tr>` abgegrenzt werden. Die einzelnen Zeilen wiederum enthalten
-Datenelemente, die mit `<td>` abgegrenzt werden.\
+Datenelemente, die mit `<td>` abgegrenzt werden.
 
 
 <playground-html-css>
@@ -32,7 +31,7 @@ Datenelemente, die mit `<td>` abgegrenzt werden.\
 
 Mit dem Tag `<th>` lassen sich Überschriften für die Spalten der Tabelle
 einfügen. Auch Überschriften müssen in einem `<tr>`-Element enthalten
-sein.\
+sein.
 
 
 <playground-html-css>

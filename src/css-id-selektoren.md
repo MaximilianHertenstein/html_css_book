@@ -1,8 +1,8 @@
 # CSS: ID-Selektoren
 
-Eine weitere Moeglichkeit, Elemente fuer die Formatierung auszuwaehlen,
+Eine weitere Möglichkeit, Elemente für die Formatierung auszuwählen,
 ist die Verwendung von ID-Selektoren. Dabei wird einem bestimmten Tag
-eine ID zugewiesen, und die Formatierung wird nur fuer dieses eine Tag
+eine ID zugewiesen, und die Formatierung wird nur für dieses eine Tag
 festgelegt.
 
 

@@ -1,8 +1,8 @@
 # CSS: Klassenselektoren
 
-Eine weitere Moeglichkeit, Elemente fuer die Formatierung auszuwaehlen,
+Eine weitere Möglichkeit, Elemente für die Formatierung auszuwählen,
 ist die Verwendung von Klassenselektoren. Dabei wird einem oder mehreren
-Tags eine Klasse zugewiesen, und die Formatierung wird nur fuer diese
+Tags eine Klasse zugewiesen, und die Formatierung wird nur für diese
 Klasse festgelegt. In CSS steht vor dem Namen der Klasse ein Punkt, um
 anzuzeigen, dass es sich um einen Klassenselektor handelt.
 
