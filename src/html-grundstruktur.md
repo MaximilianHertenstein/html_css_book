@@ -2,7 +2,7 @@
 
 ## Grundstruktur
 
-Wir haben bisher nur unvollstädnige HTML-Dokumente geschrieben. Der Browser hat diese selbst vervollstädnigt und konnte sie so anzeigen. Um selbst die volle Kontrolle zu haben, sollte man selbst ein Grundgerüst schreiben.
+Wir haben bisher nur unvollständige HTML-Dokumente geschrieben. Der Browser hat diese selbst vervollständigt und konnte sie so anzeigen. Um die volle Kontrolle zu haben, schreibst du selbst ein Grundgerüst.
 
 
 <playground-html-css>
@@ -48,9 +48,9 @@ zwischen `<body>` und `</body>`.
 
 ## Einbinden von CSS
 
-Um das Aussehen der HTML-Elemente einer Websiste anzupassen müssen wir eine
+Um das Aussehen der HTML-Elemente einer Website anzupassen, müssen wir eine
 weitere Datei mit CSS-Code erstellen.
-Wir nennen diese `style.css` und speichern den folgen Code.
+Wir nennen diese `style.css` und speichern den folgenden Code.
 
 ```css
 p {
@@ -58,7 +58,7 @@ p {
 }
 ```
 
-Dieser Code führt dazu, dass die Schriftfarbe in allen Paragraphen rot ist.
+Dieser Code führt dazu, dass die Schriftfarbe aller Absätze rot ist.
 
 
 Diese Datei muss anschließend im `head`-Element eingebunden werden. Dies
@@ -75,7 +75,7 @@ CSS-Datei.
 
   <head>
     <meta charset = "utf-8">
-   <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css">
 
     <title> Titel des Browsertabs </title>
   </head>
@@ -97,7 +97,7 @@ p {
 
 
 
-In den folgenden Bespielen zu CSS wird nicht immer das ganze Grundgerüst verwendet. In deinen Projekten solltest du es aber immer wie oben machen.
+In den folgenden Beispielen zu CSS wird nicht immer das ganze Grundgerüst verwendet. In deinen Projekten solltest du es aber immer wie oben machen.
 
 
 

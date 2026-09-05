@@ -1,8 +1,8 @@
 # HTML: Listen
 
 
-In HTML gibt kannst du mit dem Tag `<ol>` (*ordered list*) eine Liste erstellen, deren Inhalt durchnummeriert wird .
-Die einzelnen Listenelemente grenzt man durch den
+In HTML kannst du mit dem Tag `<ol>` (*ordered list*) eine Liste erstellen, deren Inhalt durchnummeriert wird.
+Die einzelnen Listenelemente grenzt du durch den
 Tag `<li>` voneinander ab. Damit der HTML-Code übersichtlich bleibt, ist
 es sinnvoll, den Code für die einzelnen Listenelemente einzurücken.
 
@@ -17,8 +17,7 @@ es sinnvoll, den Code für die einzelnen Listenelemente einzurücken.
 </script>
 </playground-html-css>
 
-Listen ohne Nummerierung kannst du mit dem Tag`<ul>` erstellen.
-(*unordered list*). 
+Listen ohne Nummerierung kannst du mit dem Tag `<ul>` (*unordered list*) erstellen.
 
 
 <playground-html-css>

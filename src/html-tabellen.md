@@ -40,7 +40,7 @@ sein.
 <table>
   <tr>
     <th> Land </th>
-    <th> BIP in Mrd.</th>
+    <th> BIP in Mrd. </th>
   </tr>
   <tr>
     <td> USA </td>

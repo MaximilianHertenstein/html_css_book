@@ -2,10 +2,10 @@
 
 ## Elemente und Tags
 
-In Word sieht das Dokument, das man bearbeitet, genauso aus wie eine PDF, die man damit erzeugt. 
+In Word sieht das Dokument, das man bearbeitet, genauso aus wie eine PDF, die man damit erzeugt.
 
-![alt text](/images/html-grundlagen/word.png)
-<https://de.wikipedia.org/wiki/Datei:Ooowysiwyg.png>
+![Word-Dokument mit Bearbeitungsansicht](/images/html-grundlagen/word.png)
+Quelle: <https://de.wikipedia.org/wiki/Datei:Ooowysiwyg.png>
 
 
 Bei Webseiten ist das anders: Hier schreibst du ein *HTML*-Dokument, das
@@ -27,7 +27,7 @@ Im folgenden Beispiel ist oben das HTML-Dokument zu sehen. Darunter siehst du di
 
 
 Ein HTML-Dokument besteht aus Elementen, denen durch sogenannte Tags
-eine bestimmte Bedeutung zugewiesen wird. Zum Beispiel wird durch den Code `<p> HTML ist super! </p>` bestimmt, dass es sich bei dem Satz *HTML ist super!* um einen
+eine bestimmte Bedeutung zugewiesen wird. Zum Beispiel wird durch den Code `<p>HTML ist super!</p>` bestimmt, dass es sich bei dem Satz *HTML ist super!* um einen
 eigenen Absatz handelt.
 
 
@@ -38,10 +38,10 @@ schließender Tag. Bei diesem steht nach der ersten spitzen Klammer noch
 ein Schrägstrich (z. B. `</p>`). Zwischen den beiden Tags steht der Inhalt
 des Elements.
 
-![alt text](/images/html-grundlagen/equation.svg)
+![Aufbau eines HTML-Elements aus öffnendem Tag, Inhalt und schließendem Tag](/images/html-grundlagen/equation.svg)
 
 Elemente, die weder Inhalt noch einen schließenden Tag benötigen, nennt
-man leere Elemente. Ein Beispiel dafür ist der Tag `<br>`. Dieser steht
+man leere Elemente. Ein Beispiel dafür ist das Tag `<br>`. Dieses steht
 für einen Zeilenumbruch.
 
 <playground-html-css>
@@ -59,7 +59,7 @@ und wichtig!
 
 Im Gegensatz zu Word kannst du Text in HTML nicht mit Leerzeichen oder
 Zeilenumbrüchen formatieren. Im folgenden Beispiel siehst du, dass
-Zeilenumbrüche in  und mehrere aufeinanderfolgende
+Zeilenumbrüche in der Ausgabe gelöscht und mehrere aufeinanderfolgende
 Leerzeichen durch ein einzelnes Leerzeichen ersetzt werden.
 
 <playground-html-css>
@@ -101,7 +101,7 @@ Stattdessen musst du Texte immer mithilfe von Tags formatieren.
 
 ## Überschriften
 
-Mit den Tags `<h1>` bis `<h6>` kannst du  Überschriften mit unterschiedlicher Größe erstellen.
+Mit den Tags `<h1>` bis `<h6>` kannst du Überschriften mit unterschiedlicher Größe erstellen.
 
 <playground-html-css>
 
@@ -142,7 +142,7 @@ Mit dem Tag `<strong>` werden Texte fett dargestellt. Mit dem Tag `<em>` werden 
 ## Verschachtelte Tags
 
 
-Tags können sowohl nacheinander
+Tags können entweder nacheinander
 
 <playground-html-css>
 

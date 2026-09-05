@@ -17,15 +17,11 @@ In HTML kann man Links mit dem Tag `<a>` erstellen.
 
 
 Der Inhalt des Elements wird als Text des Links angezeigt. Mit
-`href=...` wird angegeben, zu welcher Website der Link führt.
-
-## Eigenschaften
+`href="..."` wird angegeben, zu welcher Website der Link führt.
 
 In dem Beispiel oben ist `href` eine Eigenschaft des HTML-Elements.
 
-Mit `html
-href="https://de.wikipedia.org"
-`
+Mit `href="https://de.wikipedia.org"`
 wird festgelegt, dass diese Eigenschaft den Wert `"https://de.wikipedia.org"` hat.
 
 
@@ -40,8 +36,8 @@ Tab.
 <playground-html-css>
 
 <script type="sample/html">
-<a href = "https://de.wikipedia.org"
-   target = "_blank">
+<a href="https://de.wikipedia.org"
+   target="_blank">
     Wiki
 </a>
 </script>
@@ -51,18 +47,18 @@ Tab.
 
 ## Links zu eigenen HTML-Dateien
 
-Wir können in Links auch auf eigene HTML-Dateien verweisen.
+Mit Links kannst du auch auf eigene HTML-Dateien verweisen.
 
 <playground-html-css>
 
 <script filename="index.html" type="sample/html">
-<a href = "./subpage.html">
+<a href="./subpage.html">
     Go to subpage
 </a>
 </script>
 
 <script filename="subpage.html" type="sample/html">
- <h1> Subpage </h1>
+<h1> Subpage </h1>
 </script>
 
 
@@ -70,4 +66,4 @@ Wir können in Links auch auf eigene HTML-Dateien verweisen.
 
 
 
-Der Link zu `"./subpage.html"` funktioniert nur, wenn diese Datei genau im selben Ordner wie die HTML-Datei mit dem Link liegt.
+Der Link zu `./subpage.html` funktioniert nur, wenn beide Dateien im selben Ordner liegen.
