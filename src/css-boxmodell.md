@@ -25,10 +25,11 @@ siehst, bekommt das Element im Beispiel eine Hintergrundfarbe.
 <script type="sample/css">
 p {
     background-color: lightblue;
-    padding: 20px;
+    padding: 30px;
     border: 2px solid blue;
     margin: 20px;
 }
 </script>
 
 </playground-html-css>
+

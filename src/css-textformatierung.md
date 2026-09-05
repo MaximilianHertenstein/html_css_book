@@ -39,11 +39,27 @@ zum Beispiel `Arial`.
 
 <script type="sample/css">
 p {
-    font-family: Brush Script MT,cursive; 
+    font-family: Arial;
 }
 </script>
 
 </playground-html-css>
+
+
+Diese Schriftarten gibt es auf fast jedem Computer:
+
+- `Arial`
+
+- `Verdana`
+
+- `Times New Roman`
+
+- `Courier New`
+
+- `Georgia`
+
+Eine Schrift funktioniert nur, wenn sie auf dem Computer installiert ist,
+auf dem die Seite geöffnet wird.
 
 
 
