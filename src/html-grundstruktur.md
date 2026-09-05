@@ -2,13 +2,12 @@
 
 ## Grundstruktur
 
-Jedes HTML-Dokument braucht eine gewisse Grundstruktur, um zu
-funktionieren.
+Wir haben bisher nur unvollstädnige HTML-Dokumente geschrieben. Der Browser hat diese selbst vervollstädnigt und konnte sie so anzeigen. Um selbst die volle Kontrolle zu haben, sollte man selbst ein Grundgerüst schreiben.
 
 
 <playground-html-css>
 
-<script type="sample/html">
+<script filename="new.html" type="sample/html">
 <!DOCTYPE html>
 <html lang = "de">
 
@@ -18,7 +17,7 @@ funktionieren.
   </head>
 
   <body>
-    <p> Eigentlicher Inhalt der Website <p> 
+    <p> Eigentlicher Inhalt der Website </p> 
   </body>
 
 </html>
@@ -49,14 +48,48 @@ zwischen `<body>` und `</body>`.
 
 ## Einbinden von CSS
 
-Um CSS zu verwenden, müssen wir den Code in einer separaten Datei
-abspeichern. In unserem Beispiel nennen wir diese `stylesheet.css`.
+Um das Aussehen der HTML-Elemente einer Websiste anzupassen müssen wir eine
+weitere Datei mit CSS-Code erstellen.
+Wir nennen diese `style.css` und speichern den folgen Code.
+
+```css
+p {
+  color: red;
+}
+```
+
+Dieser Code führt dazu, dass die Schriftfarbe in allen Paragraphen rot ist.
+
+
+Diese Datei muss anschließend im `head`-Element eingebunden werden. Dies
+geschieht mit dem Tag `link`. Der Wert der Eigenschaft `rel` ist
+`stylesheet`. Der Wert der Eigenschaft `href` ist der Name der
+CSS-Datei.
+
 
 <playground-html-css>
 
-<script type="sample/html">
-<p> Eigentlicher Inhalt der Website </p>
+<playground-html-css>
+
+<script filename="new.html" type="sample/html">
+<!DOCTYPE html>
+<html lang = "de">
+
+  <head>
+    <meta charset = "utf-8">
+   <link rel="stylesheet" href="style.css">
+
+    <title> Titel des Browsertabs </title>
+  </head>
+
+  <body>
+    <p> Eigentlicher Inhalt der Website </p> 
+  </body>
+
+</html>
 </script>
+
+</playground-html-css>
 
 <script type="sample/css">
 p {
@@ -66,17 +99,5 @@ p {
 
 </playground-html-css>
 
-Diese Datei muss anschließend im `head`-Element eingebunden werden. Dies
-geschieht mit dem Tag `link`. Der Wert der Eigenschaft `rel` ist
-`stylesheet`. Der Wert der Eigenschaft `href` ist der Name der
-CSS-Datei.
 
-``` html
-...
-  <head>
-...
-  <link rel="stylesheet" href="stylesheet.css">
-...
-  </head>
-...
-```
+

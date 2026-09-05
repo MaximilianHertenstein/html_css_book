@@ -48,6 +48,9 @@ Tab.
 
 </playground-html-css>
 
+
+## Links zu eigenen HTML-Dateien
+
 Wir können in Links auch auf eigene HTML-Dateien verweisen.
 
 <playground-html-css>
@@ -64,3 +67,7 @@ Wir können in Links auch auf eigene HTML-Dateien verweisen.
 
 
 </playground-html-css>
+
+
+
+Der Link zu `"./subpage.html"` funktioniert nur, wenn diese Datei genau im selben Ordner wie die HTML-Datei mit dem Link liegt.
