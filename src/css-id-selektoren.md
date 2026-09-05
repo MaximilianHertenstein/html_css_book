@@ -9,6 +9,7 @@ festgelegt.
 <playground-html-css>
 
 <script type="sample/html">
+<link rel="stylesheet" href="style.css">
 <h1> Wie </h1> 
 <p id="p1" > geht </p> 
 <em> es </em> 

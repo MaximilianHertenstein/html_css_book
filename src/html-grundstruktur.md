@@ -69,8 +69,6 @@ CSS-Datei.
 
 <playground-html-css>
 
-<playground-html-css>
-
 <script filename="new.html" type="sample/html">
 <!DOCTYPE html>
 <html lang = "de">
@@ -88,8 +86,6 @@ CSS-Datei.
 
 </html>
 </script>
-
-</playground-html-css>
 
 <script type="sample/css">
 p {

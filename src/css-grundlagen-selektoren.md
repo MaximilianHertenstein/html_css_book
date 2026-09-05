@@ -10,6 +10,7 @@ Beispiel siehst du den HTML-Code und den zugehörigen CSS-Code.
 <playground-html-css>
 
 <script type="sample/html">
+<link rel="stylesheet" href="style.css">
 <h1> hallo </h1> 
 <p> welt </p> 
 </script>
@@ -38,6 +39,7 @@ angegeben. Je größer die Zahl, desto größer die Schrift.
 <playground-html-css>
 
 <script type="sample/html">
+<link rel="stylesheet" href="style.css">
 <h1> Überschrift </h1>
 </script>
 
@@ -60,6 +62,7 @@ zentriert dargestellt.
 <playground-html-css>
 
 <script type="sample/html">
+<link rel="stylesheet" href="style.css">
 <p> Lorem ipsum dolor sit amet, consetetur sadipscing elitr. </p>
 </script>
 
@@ -76,6 +79,7 @@ p {
 <playground-html-css>
 
 <script type="sample/html">
+<link rel="stylesheet" href="style.css">
 <p> Lorem ipsum dolor sit amet, consetetur sadipscing elitr. </p>
 </script>
 
@@ -102,6 +106,7 @@ weiteres Beispiel dafür ist im folgenden Code zu sehen.
 <playground-html-css>
 
 <script type="sample/html">
+<link rel="stylesheet" href="style.css">
 <h1> Wie </h1> 
 <p> geht </p> 
 <em> es </em> 

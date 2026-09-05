@@ -10,6 +10,7 @@ anzuzeigen, dass es sich um einen Klassenselektor handelt.
 <playground-html-css>
 
 <script type="sample/html">
+<link rel="stylesheet" href="style.css">
 <h1> Wie </h1> 
 <p class="important" > geht </p> 
 <em class="important"> es </em> 
