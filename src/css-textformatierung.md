@@ -25,6 +25,28 @@ h1 {
 
 
 
+Mit der Eigenschaft `font-family` legst du die Schriftart von
+HTML-Elementen fest. Als Wert schreibst du den Namen der Schrift,
+zum Beispiel `Arial`.
+
+
+<playground-html-css>
+
+<script type="sample/html">
+<link rel="stylesheet" href="style.css">
+<p> Hallo Welt </p>
+</script>
+
+<script type="sample/css">
+p {
+    font-family: Brush Script MT,cursive; 
+}
+</script>
+
+</playground-html-css>
+
+
+
 Mit der Eigenschaft `text-align` kannst du die
 Ausrichtung von Texten in HTML-Elementen festlegen. In den
 folgenden Beispielen wird derselbe Text einmal linksbündig und einmal
