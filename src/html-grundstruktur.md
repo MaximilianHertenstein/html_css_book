@@ -97,3 +97,23 @@ p {
 
 
 
+In den folgenden Bespielen zu CSS wird nicht immer das ganze Grundgerüst verwendet. In deinen Projekten solltest du es aber immer wie oben machen.
+
+
+
+<playground-html-css>
+
+<script filename="new.html" type="sample/html">
+<link rel="stylesheet" href="style.css">
+<p> Eigentlicher Inhalt der Website </p> 
+</script>
+
+<script type="sample/css">
+p {
+  color: red;
+}
+</script>
+
+</playground-html-css>
+
+
