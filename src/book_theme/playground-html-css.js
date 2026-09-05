@@ -1,17 +1,46 @@
 // <playground-html-css>: interaktive HTML/CSS-Beispiele (Editoren + Vorschau)
+// Unterstützt Mehrdatei-Projekte:
+//   <script type="sample/html" filename="index.html"> ... </script>
+//   <script type="sample/html" filename="subpage.html"> ... </script>
+// Ohne filename greifen Defaults (index.html / style.css / script.js).
+// Dateien werden 1:1 ins Projekt übernommen (kein Auto-Link).
 const EDITOR_MAX = 400, PREVIEW_MAX = 600, TOOLBAR = 41; // Toolbar von <playground-preview>
 
 const clamp = (v, m) => Math.min(Math.ceil(v), m);
 const el = (tag, props = {}) => Object.assign(document.createElement(tag), props);
+const DEFAULT_NAME = { html: "index.html", css: "style.css", js: "script.js" };
 
 class PlaygroundHtmlCss extends HTMLElement {
   connectedCallback() {
     if (this._init) return;
     this._init = true;
 
-    const html = this.querySelector('script[type="sample/html"]')?.textContent.trim() || "";
-    const css = this.querySelector('script[type="sample/css"]')?.textContent.trim() || "";
-    if (!html && !css) return console.error("<playground-html-css> enthält weder HTML noch CSS.");
+    const sources = [...this.querySelectorAll('script[type^="sample/"]')];
+    if (!sources.length)
+      return console.error("<playground-html-css> enthält weder HTML noch CSS.");
+
+    // Sammeln + Defaults + Duplikate auflösen.
+    const seen = new Set();
+    const files = [];
+    for (const s of sources) {
+      const type = s.getAttribute("type");
+      const kind = type.split("/")[1]; // html | css | js | ...
+      if (!["html", "css", "js"].includes(kind)) continue;
+      let name = s.getAttribute("filename") || DEFAULT_NAME[kind] || `file-${files.length}.${kind}`;
+      if (seen.has(name)) {
+        const dot = name.lastIndexOf(".");
+        const base = dot > 0 ? name.slice(0, dot) : name;
+        const ext = dot > 0 ? name.slice(dot) : "";
+        let i = 2;
+        while (seen.has(`${base}-${i}${ext}`)) i++;
+        name = `${base}-${i}${ext}`;
+      }
+      seen.add(name);
+      const code = (s.textContent || "").trim();
+      files.push({ name, code, type, kind });
+    }
+    if (!files.length)
+      return console.error("<playground-html-css> enthält keine unterstützten Dateien.");
 
     const project = el("playground-project", {
       sandboxBaseUrl: new URL("../playground/", import.meta.url).href,
@@ -19,28 +48,30 @@ class PlaygroundHtmlCss extends HTMLElement {
 
     const box = el("div", { className: "playground-html-css-editors" });
     const editors = [];
-    for (const [name, code, type] of [
-      ["index.html", html, "sample/html"],
-      ["style.css", css, "sample/css"],
-    ]) {
-      if (!code) continue;
-      const file = el("script", { type, textContent: code });
-      file.setAttribute("filename", name);
+    for (const f of files) {
+      const code = f.code;
+      const file = el("script", { type: f.type, textContent: code });
+      file.setAttribute("filename", f.name);
       project.appendChild(file);
 
-      const editor = el("playground-file-editor", { project, filename: name, lineNumbers: true });
+      const editor = el("playground-file-editor", { project, filename: f.name, lineNumbers: true });
       editor.style.height = `${clamp(code.split("\n").length * 20 + 16, EDITOR_MAX)}px`; // Startwert bis zur Messung
       editors.push(editor);
 
-      const section = el("div", { innerHTML: `<div class="playground-html-css-header">${name}</div>` });
+      const section = el("div", { innerHTML: `<div class="playground-html-css-header">${f.name}</div>` });
       section.appendChild(editor);
       box.appendChild(section);
     }
 
     const root = el("div", { className: "playground-html-css" });
     root.appendChild(box);
-    const preview = html ? el("playground-preview", { project, className: "playground-html-css-preview" }) : null;
-    if (preview) root.appendChild(preview);
+    const htmlFiles = files.filter((f) => f.kind === "html");
+    const entry = htmlFiles.find((f) => f.name === "index.html") || htmlFiles[0];
+    const preview = entry ? el("playground-preview", { project, className: "playground-html-css-preview" }) : null;
+    if (preview) {
+      preview.setAttribute("html-file", entry.name);
+      root.appendChild(preview);
+    }
 
     this.replaceChildren(project, root);
 
