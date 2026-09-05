@@ -30,7 +30,7 @@ wird festgelegt, dass diese Eigenschaft den Wert `"https://de.wikipedia.org"` ha
 Mit dem Attribut `target` kann festgelegt werden, wo der
 Link geöffnet werden soll. Falls das Attribut nicht gesetzt wird, öffnet
 sich der Link im Browser-Tab, in dem er angeklickt wurde. Wird die
-Option `target = "_blank"` gewählt, öffnet sich der Link in einem neuen
+Option `target="_blank"` gewählt, öffnet sich der Link in einem neuen
 Tab.
 
 <playground-html-css>

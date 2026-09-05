@@ -3,7 +3,7 @@
 ## Grundlagen
 
 Die Formatierung von Websites erfolgt nicht im HTML-Code selbst, sondern
-in einem separaten Dokument, dem sogenannten *Stylesheet*. Die Sprache die in Stylesheets verwendet wird, wird *CSS* genannt. 
+in einem separaten Dokument, dem sogenannten *Stylesheet*. Die Sprache, die in Stylesheets verwendet wird, wird *CSS* genannt.
 
 
 In den folgenden Codeblöcken befindet sich der HTML-Code immer oben und der CSS-Code unten.
@@ -25,11 +25,11 @@ h1 {
 </playground-html-css>
 
 Durch das Element `<link rel="stylesheet" href="style.css">`
-wir die Datei `stlye.css` eingebunden.
+wird die Datei `style.css` eingebunden.
 
 In `style.css` wird festgelegt, dass alle Texte in `<h1>`-Tags eine blaue Schriftfarbe haben.
 
-Dabei ist `color` die Eigenschaft die geändert wird und `blue` der zugehörige Wert.
+Dabei ist `color` die Eigenschaft, die geändert wird und `blue` der zugehörige Wert.
 
 
 
@@ -38,7 +38,7 @@ Dabei ist `color` die Eigenschaft die geändert wird und `blue` der zugehörige 
 In den Beispielen oben haben wir die Formatierung aller Elemente mit dem Tagnamen `h1` geändert. Solche Anweisungen, die sich auf alle Tags mit einem bestimmten Namen
 beziehen, werden *Typselektoren* genannt.
 
-Wir können alle bisher kennen gelernten Tags als *Typselektoren* verwenden.
+Wir können alle bisher kennengelernten Tags als *Typselektoren* verwenden.
 
 
 <playground-html-css>
@@ -73,7 +73,7 @@ p {
 
 
 
-Im HMTL-Grundgerüst muss die `CSS`-Datei im `head`-Element eingebunden werden. 
+Im HTML-Grundgerüst muss die `CSS`-Datei im `head`-Element eingebunden werden. 
 
 
 <playground-html-css>

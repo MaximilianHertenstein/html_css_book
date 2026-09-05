@@ -30,7 +30,7 @@ Wir haben bisher nur unvollständige HTML-Dokumente geschrieben. Der Browser hat
 Wenn wir diese Grundstruktur in einer Datei `new.html` speichern und
 diese mit einem Browser öffnen, ist Folgendes zu sehen:
 
-<img src="images/html-grundstruktur/browser_grundstruktur.png" style="width:50.0%" alt="image" />
+<img src="images/html-grundstruktur/browser_grundstruktur.png" style="width:50.0%" alt="Browserfenster mit dem Inhalt des Grundgerüsts" />
 
 Alle HTML-Elemente, die du bis jetzt kennengelernt hast, schreibt man
 zwischen `<body>` und `</body>`.

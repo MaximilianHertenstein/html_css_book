@@ -5,7 +5,7 @@
 
 Mit der Eigenschaft `font-size` kannst du die Schriftgröße von
 HTML-Elementen festlegen. Die Schriftgröße wird in Pixeln (`px`)
-angegeben. 
+angegeben.
 
 
 <playground-html-css>
@@ -25,7 +25,7 @@ h1 {
 
 
 
-Mit der Eigenschaft `text-align`, kannst du die
+Mit der Eigenschaft `text-align` kannst du die
 Ausrichtung von Texten in HTML-Elementen festlegen. In den
 folgenden Beispielen wird derselbe Text einmal linksbündig und einmal
 zentriert dargestellt.

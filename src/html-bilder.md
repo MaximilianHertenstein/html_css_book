@@ -11,8 +11,7 @@ Bilder werden mit dem Tag `img` angezeigt. Wichtige Eigenschaften sind:
 
 - `width` für die Breite des Bildes
 
-Im folgenden Beispiel wird das Bild `dog.png` eingebunden. Dieses liegt
-im selben Ordner wie die `html`-Datei.
+Im folgenden Beispiel wird ein Bild aus dem Internet eingebunden.
 
 
 <playground-html-css>
@@ -30,10 +29,10 @@ im selben Ordner wie die `html`-Datei.
 ## Lokale Bilder
 
 
-Wie bei Links auf eigene HTML-Dokumente können wir auch lokal verfügbare Bilder verwenden.
+Wie bei Links auf eigene HTML-Dateien kannst du auch lokal verfügbare Bilder verwenden.
 
 
-Wenn sich das Bild im selben Ordner wie die HTML-Datei befindet und den Namen `dog.png` hat, können wir es folgendermaßen einbinden.
+Wenn sich das Bild im selben Ordner wie die HTML-Datei befindet und den Namen `dog.png` hat, kannst du es folgendermaßen einbinden.
 
 ```html
 <img src="dog.png" alt="Ein süßer Hund" width="300">

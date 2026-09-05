@@ -9,7 +9,7 @@ Quelle: <https://de.wikipedia.org/wiki/Datei:Ooowysiwyg.png>
 
 
 Bei Webseiten ist das anders: Hier schreibst du ein *HTML*-Dokument, das
-Formatierungsbefehle und Text enthält. Wenn jemand das Dokument mit einem Browser anschaut, sieht er den fertig formatierten Text.
+Formatierungsbefehle und Text enthält. Wenn jemand das Dokument mit einem Browser anschaut, sieht man den fertig formatierten Text.
 
 Im folgenden Beispiel ist oben das HTML-Dokument zu sehen. Darunter siehst du die Website, die daraus erzeugt wird.
 
