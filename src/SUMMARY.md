@@ -8,10 +8,11 @@
 - [HTML: Bilder](./html-bilder.md)
 - [HTML: Videos](./html-videos.md)
 - [HTML: Grundstruktur](./html-grundstruktur.md)
-- [CSS: Einbinden](./css-einbinden.md)
+
 - [CSS: Grundlagen und Selektoren](./css-grundlagen-selektoren_typselektoren.md)
-- [CSS: Textformatierung](./css-textformatierung.md)
+- [CSS: Einbinden](./css-einbinden.md)
 - [CSS: Farben](./css-farben.md)
+- [CSS: Textformatierung](./css-textformatierung.md)
 - [CSS: Box-Modell](./css-boxmodell.md)
 - [CSS: ID-Selektoren](./css-id-selektoren.md)
 - [CSS: Klassenselektoren](./css-klassenselektoren.md)
