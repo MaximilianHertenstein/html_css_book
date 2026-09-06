@@ -1,6 +1,6 @@
 # Interaktive HTML-/CSS-Beispiele in mdBook
 
-[https://maximilianhertenstein.github.io/html_css_book/]
+https://maximilianhertenstein.github.io/html_css_book/
 
 Dieses Projekt integriert [Playground Elements](https://github.com/google/playground-elements)
 in ein [mdBook](https://rust-lang.github.io/mdBook/).
