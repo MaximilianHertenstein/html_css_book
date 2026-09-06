@@ -1,7 +1,7 @@
 # Textformatierung mit CSS
 
 
-## Weitere wichtige Eigenschaften
+## Schriftgröße
 
 Mit der Eigenschaft `font-size` kannst du die Schriftgröße von
 HTML-Elementen festlegen. Die Schriftgröße wird in Pixeln (`px`)
@@ -23,6 +23,7 @@ h1 {
 
 </playground-html-css>
 
+## Schriftart
 
 
 Mit der Eigenschaft `font-family` legst du die Schriftart von
