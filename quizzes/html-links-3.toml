@@ -1,0 +1,11 @@
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """Dein Link `<a href="./subpage.html"> Go to subpage </a>` funktioniert nicht. Beide Dateien heißen richtig. Woran liegt es am wahrscheinlichsten?"""
+prompt.distractors = [
+  """Eigene Dateien kann man grundsätzlich nicht verlinken, nur Internetadressen.""",
+  """Der Dateiname ist egal, der Browser findet die Datei von allein.""",
+  """Man braucht für eigene Dateien kein `href`.""",
+]
+answer.answer = """Die Datei `subpage.html` liegt nicht im selben Ordner wie die Seite mit dem Link."""
+context = """`./subpage.html` heißt: suche im gleichen Ordner. Liegt die Datei woanders, findet der Browser sie nicht."""
+id = "eddd90d3-7f67-4bed-beff-a12033472c76"

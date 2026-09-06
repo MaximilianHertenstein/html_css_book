@@ -1,0 +1,11 @@
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """Was wählt die Regel `#p1 { color: blue; }` aus?"""
+prompt.distractors = [
+  """Alle Absätze mit dem Tag `p` werden blau.""",
+  """Alle Elemente mit der Klasse `p1` werden blau.""",
+  """Die gesamte Seite wird blau.""",
+]
+answer.answer = """Genau das eine Element mit `id="p1"`, zum Beispiel `<p id="p1"> geht </p>`."""
+context = """Die Raute `#` heißt ID-Selektor. Sie trifft nur das Element mit genau dieser ID, alle anderen bleiben unverändert."""
+id = "6583fff7-b6a1-402f-a463-f97eaa814e4e"

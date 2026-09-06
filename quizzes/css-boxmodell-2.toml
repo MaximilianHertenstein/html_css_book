@@ -1,0 +1,11 @@
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """Wo liegt `padding` und wo liegt `margin`?"""
+prompt.distractors = [
+  """Beide sind der Abstand nach außen, es gibt keinen Unterschied.""",
+  """Beide liegen zwischen Inhalt und Rahmen, also innen.""",
+  """`margin` ist die Rahmenfarbe, `padding` die Rahmenbreite.""",
+]
+answer.answer = """`padding` ist der Innenabstand zwischen Inhalt und Rahmen, `margin` der Außenabstand zum nächsten Element."""
+context = """Stell dir einen Bilderrahmen vor: `padding` ist das Passepartout innen, `margin` der Abstand zum nächsten Bild an der Wand."""
+id = "56a17055-077b-4db7-bbaa-d357dd6d68ce"

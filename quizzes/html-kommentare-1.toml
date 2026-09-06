@@ -1,0 +1,11 @@
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """Wie schreibst du in HTML einen Kommentar?"""
+prompt.distractors = [
+  """Mit zwei Schrägstrichen: `// Das ist ein Kommentar`""",
+  """Mit Schrägstrich und Stern: `/* Das ist ein Kommentar */`""",
+  """Mit einem eigenen Tag: `<comment> Das ist ein Kommentar </comment>`""",
+]
+answer.answer = """Mit `<!--` am Anfang und `-->` am Ende."""
+context = """Nur `<!-- ... -->` ist in HTML ein Kommentar. Die anderen Schreibweisen stammen aus anderen Sprachen und funktionieren hier nicht."""
+id = "69d43da5-36f0-44c9-8085-c3c795306da4"

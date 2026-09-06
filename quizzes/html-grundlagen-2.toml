@@ -1,0 +1,11 @@
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """Du schreibst mehrere Leerzeichen und Zeilenumbrüche in dein HTML, ganz ohne Tags. Was zeigt der Browser?"""
+prompt.distractors = [
+  """Genauso viele Leerzeichen und Umbrüche, wie du getippt hast, so wie in Word.""",
+  """Jeder Zeilenumbruch erzeugt automatisch einen neuen Absatz.""",
+  """Der Browser meldet einen Fehler, weil Leerzeichen verboten sind.""",
+]
+answer.answer = """Etwa ein einziges Leerzeichen. Mehrere Leerzeichen und Umbrüche werden zusammengezogen bzw. gelöscht."""
+context = """Anders als in Word formatierst du in HTML nicht mit Leerzeichen oder Enter, sondern immer mit Tags wie `<p>` oder `<br>`."""
+id = "373f22da-97e7-4049-aa94-c99ea997fccd"

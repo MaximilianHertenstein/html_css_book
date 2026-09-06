@@ -1,0 +1,11 @@
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """Was bewirkt der Typselektor `h1` in deinem Stylesheet?"""
+prompt.distractors = [
+  """Er formatiert nur die allererste `h1`-Überschrift, der Rest bleibt unverändert.""",
+  """Er formatiert genau ein Element mit einer besonderen ID.""",
+  """Er formatiert alles auf der Seite, egal welches Tag.""",
+]
+answer.answer = """Er formatiert alle Elemente mit dem Tagnamen `h1`."""
+context = """Typ heißt Tagname. Jeder Tag, den du kennst (`h1`, `p`, `li` und so weiter), kann als Typselektor alle seine Elemente auf einmal formatieren."""
+id = "4435bef6-9b29-4f9c-aba5-472dcc494a7f"

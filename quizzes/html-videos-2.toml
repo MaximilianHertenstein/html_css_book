@@ -1,0 +1,11 @@
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """In welchem Attribut steht beim `<video>`-Tag die Videodatei?"""
+prompt.distractors = [
+  """`controls`, darin steht der Dateiname.""",
+  """`width`, darin steht der Dateiname.""",
+  """`href`, so wie bei Links.""",
+]
+answer.answer = """`src`, zum Beispiel `src="blume.mp4"`."""
+context = """Videos und Bilder funktionieren hier gleich: `src` nennt die Datei, `width` nur die Breite. `controls` ist keine Datei, sondern schaltet die Knöpfe ein."""
+id = "b1917ae2-98ef-441e-8814-fa0a1348f481"

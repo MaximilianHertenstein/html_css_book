@@ -1,0 +1,11 @@
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """Was stellt die Regel `h1 { font-size: 60px; }` ein?"""
+prompt.distractors = [
+  """Sie macht den Rahmen der Überschrift 60 Pixel breit.""",
+  """Sie macht ein Bild 60 Pixel breit.""",
+  """Sie begrenzt die Überschrift auf 60 Zeichen.""",
+]
+answer.answer = """Sie setzt die Schriftgröße der Überschrift auf 60 Pixel."""
+context = """`font-size` steuert nur die Textgröße. Wie alle Längen hier wird sie in Pixeln (`px`) angegeben."""
+id = "3e9a0360-f81d-4eda-aa67-605dc279fd45"

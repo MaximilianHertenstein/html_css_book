@@ -1,0 +1,11 @@
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """Was bewirkt `target="_blank"` an einem Link?"""
+prompt.distractors = [
+  """Der Linktext wird rot eingefärbt.""",
+  """Der Link wird gelöscht und ist nicht mehr klickbar.""",
+  """Der Link führt immer zur Startseite zurück.""",
+]
+answer.answer = """Der Link öffnet sich in einem neuen Browsertab."""
+context = """Ohne `target` öffnet sich der Link im gleichen Tab. Mit `target="_blank"` bleibt deine Seite offen und das Ziel erscheint in einem neuen Tab."""
+id = "fe449703-e2b9-4494-b833-fb7c7079670b"

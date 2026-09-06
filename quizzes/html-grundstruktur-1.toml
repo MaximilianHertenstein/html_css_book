@@ -1,0 +1,11 @@
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """Wohin schreibst du alles, was man auf der Website sehen soll?"""
+prompt.distractors = [
+  """In den `<head>`, dort steht alles Wichtige.""",
+  """In den `<title>`, das ist die größte Überschrift.""",
+  """Hinter `<!DOCTYPE html>`, direkt in diese Zeile.""",
+]
+answer.answer = """Zwischen `<body>` und `</body>`."""
+context = """Der `<head>` enthält nur unsichtbare Infos über die Seite. Alles Sichtbare, also alle Elemente aus den früheren Kapiteln, gehört in den `<body>`."""
+id = "812f9614-9b54-41b9-8152-0781883313d1"

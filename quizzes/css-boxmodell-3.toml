@@ -1,0 +1,11 @@
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """In welcher Einheit gibst du Längen wie Rahmenbreite oder Abstände in diesem Kapitel an?"""
+prompt.distractors = [
+  """In Zentimetern, so wie im Matheheft.""",
+  """Ganz ohne Einheit, der Browser rät die Größe.""",
+  """In Wörtern, zum Beispiel `fünf` statt `5px`.""",
+]
+answer.answer = """In Pixeln, zum Beispiel `5px` oder `30px`."""
+context = """Alle Längen in diesem Kapitel schreibst du als Zahl mit `px` dahinter, zum Beispiel `padding: 10px`."""
+id = "d647ce82-2e7b-4f57-a04b-548d37cbec47"

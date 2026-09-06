@@ -1,0 +1,11 @@
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """Was bedeutet der Wert `#ff0000` in CSS?"""
+prompt.distractors = [
+  """Eine Schriftgröße von ff0000 Pixeln.""",
+  """Einen Dateinamen für ein Bild.""",
+  """Einen Fehler, solche Zeichen sind in CSS verboten.""",
+]
+answer.answer = """Einen Hex-Wert für eine Farbe, hier Rot."""
+context = """Farben schreibst du entweder als Namen wie `red` oder als Hex-Wert mit `#`, zum Beispiel `#ff0000` für Rot."""
+id = "71588285-690e-44c8-a4a3-e11702efe28e"

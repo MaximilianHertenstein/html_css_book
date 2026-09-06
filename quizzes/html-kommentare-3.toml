@@ -1,0 +1,11 @@
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """Wozu schreibst du Kommentare in deinen Code?"""
+prompt.distractors = [
+  """Damit die Website schneller lädt.""",
+  """Damit sich die Farben der Seite ändern.""",
+  """Damit der Browser Fehler von allein behebt.""",
+]
+answer.answer = """Damit du und andere den Code später besser verstehen."""
+context = """Kommentare ändern nichts an der angezeigten Seite. Sie machen nur den Code lesbarer, zum Beispiel: `<!-- Hier beginnt die Preisliste -->`."""
+id = "0f288669-7e91-4bac-ac87-4dea36ac2d76"

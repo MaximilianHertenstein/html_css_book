@@ -1,0 +1,11 @@
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """Auf welche Elemente wirkt `.important { color: blue; }`?"""
+prompt.distractors = [
+  """Nur Absätze, andere Tags wie `<em>` bleiben immer unverändert.""",
+  """Genau ein Element, mehr geht mit Klassen nicht.""",
+  """Alles auf der Seite, egal ob mit Klasse oder ohne.""",
+]
+answer.answer = """Alle Elemente mit `class="important"`, auch wenn es verschiedene Tags sind."""
+context = """Im Beispiel werden `<p class="important">` und `<em class="important">` beide blau, der Rest bleibt wie er war."""
+id = "3a9bc1f3-ae68-4b7c-9361-6396838cbb7b"

@@ -1,0 +1,11 @@
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """Du schreibst `p { font-family: Arial; }`, aber auf einem anderen Computer sieht die Seite anders aus. Warum?"""
+prompt.distractors = [
+  """Der Browser erfindet die Schrift immer neu, `font-family` ist Zufall.""",
+  """`font-family` funktioniert nur mit Internet, sonst nie.""",
+  """`font-family` wirkt nur bei Überschriften, nie bei Absätzen.""",
+]
+answer.answer = """Die Schrift wirkt nur, wenn sie auf dem Computer installiert ist, der die Seite öffnet."""
+context = """Deshalb nimmst du Schriften, die fast überall dabei sind, zum Beispiel `Arial`, `Verdana` oder `Georgia`."""
+id = "1f43a47b-b799-4ca2-8c0f-dff01a917785"

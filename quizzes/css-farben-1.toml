@@ -1,0 +1,11 @@
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """Was färbt `color` und was färbt `background-color`?"""
+prompt.distractors = [
+  """Beide verändern die Schriftfarbe, es gibt keinen Unterschied.""",
+  """Beide verändern den Hintergrund, die Schrift bleibt immer schwarz.""",
+  """`background-color` gibt es in CSS nicht.""",
+]
+answer.answer = """`color` färbt die Schrift, `background-color` färbt den Hintergrund des Elements."""
+context = """Mit `p { color: white; background-color: #ff0000; }` bekommst du weiße Schrift auf rotem Grund."""
+id = "96d37848-dd20-47aa-b383-7038fe6350ea"

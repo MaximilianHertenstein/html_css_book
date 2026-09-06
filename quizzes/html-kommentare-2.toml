@@ -1,0 +1,11 @@
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """Was passiert mit einem Kommentar, wenn du die Seite im Browser öffnest?"""
+prompt.distractors = [
+  """Der Kommentar erscheint als normaler Text auf der Website.""",
+  """Der Kommentar wird als große Überschrift angezeigt.""",
+  """Der gesamte Rest der Seite wird gelöscht.""",
+]
+answer.answer = """Man sieht ihn nur im HTML-Code, nicht auf der Website."""
+context = """Kommentare sind Notizen für dich und andere, die den Code lesen. Der Browser blendet sie auf der Seite aus."""
+id = "51c7d250-3465-46ad-b681-79c1ffb1f763"

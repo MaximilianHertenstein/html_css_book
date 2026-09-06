@@ -1,0 +1,11 @@
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """Was steht in der Datei `style.css`?"""
+prompt.distractors = [
+  """Ein komplettes HTML-Grundgerüst mit `<head>` und `<body>`.""",
+  """Nur Bilder, Texte stehen weiter im HTML.""",
+  """Nur Kommentare, der Rest steht im HTML."""
+]
+answer.answer = """Nur CSS-Regeln wie `p { color: red; }`, kein HTML drumherum."""
+context = """CSS und HTML sind getrennt: HTML beschreibt den Inhalt, die CSS-Datei enthält nur Formatierungsregeln dafür."""
+id = "3d4ba598-c712-4fff-8670-a0245f54b165"

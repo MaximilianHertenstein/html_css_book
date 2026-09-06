@@ -1,0 +1,11 @@
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """Wie vergibst du im HTML die ID `p1` an einen Absatz?"""
+prompt.distractors = [
+  """Mit einer Klasse: `<p class="p1">`""",
+  """Mit einer Raute im Tag: `<p #p1>`""",
+  """Mit CSS im HTML: `<p> #p1 { } </p>`""",
+]
+answer.answer = """Mit dem Attribut `id`: `<p id="p1">`."""
+context = """Die ID steht als Attribut im öffnenden Tag. Im CSS sprichst du sie danach mit `#p1` an."""
+id = "c2aa5c80-98dd-4ea7-af37-57ce8394dd10"

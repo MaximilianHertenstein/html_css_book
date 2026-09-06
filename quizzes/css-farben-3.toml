@@ -1,0 +1,11 @@
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """Was ändert die Regel `p { color: white; background-color: #ff0000; }`?"""
+prompt.distractors = [
+  """Nur der allererste Absatz wird so formatiert.""",
+  """Der Text wird rot auf weißem Grund.""",
+  """Nur der Hintergrund ändert sich, der Text bleibt wie er war.""",
+]
+answer.answer = """Alle Absätze bekommen weiße Schrift auf rotem Hintergrund."""
+context = """`p` als Typselektor trifft alle Absätze. `color` wirkt auf die Schrift, `background-color` auf die Fläche dahinter."""
+id = "5d01240d-c89c-435d-8175-11a2177c0f8f"

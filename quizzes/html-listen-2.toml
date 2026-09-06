@@ -1,0 +1,11 @@
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """Wozu dient der Tag `<li>`?"""
+prompt.distractors = [
+  """Er startet die gesamte Liste, einmal pro Seite reicht.""",
+  """Er macht den Text automatisch fett.""",
+  """Er schließt die Website am Ende ab.""",
+]
+answer.answer = """Er grenzt ein einzelnes Listenelement ab. Jedes Element bekommt sein eigenes `<li>`."""
+context = """`<ol>` oder `<ul>` bilden den Rahmen der Liste, `<li>` markiert jeden Eintrag darin, zum Beispiel `<li> Japan </li>`."""
+id = "4f085a01-af98-43f7-849a-1925e2fbc753"

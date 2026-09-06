@@ -1,0 +1,11 @@
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """Was bedeuten `color` und `blue` in der Regel `h1 { color: blue; }`?"""
+prompt.distractors = [
+  """Das sind zwei HTML-Tags, die ineinander stehen.""",
+  """Das sind zwei Dateien, die verlinkt werden.""",
+  """Das sind zwei Selektoren für zwei verschiedene Elemente.""",
+]
+answer.answer = """`color` ist die Eigenschaft, `blue` ist der Wert, auf den sie gesetzt wird."""
+context = """Eine CSS-Regel lautet immer: Selektor vorne (`h1`), dann in geschweiften Klammern Eigenschaft und Wert, hier also blaue Schriftfarbe für alle `h1`."""
+id = "1c41e88a-6da6-4d93-9090-de923a94ec49"

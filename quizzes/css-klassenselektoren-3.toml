@@ -1,0 +1,11 @@
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """Wann nimmst du eine ID und wann eine Klasse?"""
+prompt.distractors = [
+  """Es gibt keinen Unterschied, beide sind völlig gleich.""",
+  """Eine Klasse darf nur einmal vorkommen, eine ID beliebig oft.""",
+  """IDs schreibt man mit Punkt, Klassen mit Raute.""",
+]
+answer.answer = """Eine ID kennzeichnet genau ein Element, eine Klasse fasst mehrere Elemente zusammen."""
+context = """Für ein einzelnes, eindeutiges Element nimmst du eine ID mit `#`, für Gruppen eine Klasse mit `.`."""
+id = "6ddc3156-4e24-44b2-bcce-d99cffd10d78"

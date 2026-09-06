@@ -1,0 +1,11 @@
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """Was bewirkt die Regel `p { text-align: center; }`?"""
+prompt.distractors = [
+  """Sie rückt das ganze Browserfenster in die Mitte des Bildschirms.""",
+  """Sie macht den Text fett und kursiv.""",
+  """Sie ändert die Schriftart des Absatzes.""",
+]
+answer.answer = """Sie richtet den Text innerhalb des Absatzes zentriert aus."""
+context = """`text-align` steuert nur die Ausrichtung des Texts im Element, zum Beispiel `left` für linksbündig oder `center` für zentriert."""
+id = "3894e516-d5ba-4812-b484-672e4aecad6b"

@@ -1,0 +1,11 @@
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """Was bedeutet `solid` in der Regel `p { border: 5px solid red; }`?"""
+prompt.distractors = [
+  """Es ist die Farbe des Rahmens, nämlich Rot.""",
+  """Es ist die Breite des Rahmens, nämlich 5 Pixel.""",
+  """Es ist die Schriftart des Absatzes.""",
+]
+answer.answer = """Es ist die durchgezogene Linienart. Ohne `solid` siehst du gar keinen Rahmen."""
+context = """Die Kurzform liest sich so: 5 Pixel breit, durchgezogen, rot. Breite allein reicht nicht, die Art muss dabei sein."""
+id = "54f9a5e4-b8ee-49cb-8453-f094341bd195"

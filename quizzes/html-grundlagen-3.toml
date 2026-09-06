@@ -1,0 +1,11 @@
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """Was ist an diesem Code falsch? `<p> HTML ist <strong> super! </p> </strong>`"""
+prompt.distractors = [
+  """Man darf `<strong>` nicht innerhalb von `<p>` verwenden.""",
+  """Es fehlt ein Attribut wie `href`, sonst ist der Code ungültig.""",
+  """Nichts, der Code ist korrekt verschachtelt.""",
+]
+answer.answer = """Die Tags sind falsch herum geschlossen. Wer zuerst geöffnet wurde, wird zuletzt geschlossen."""
+context = """Richtig wäre: `<p> HTML ist <strong> super! </strong> </p>`. Ein Element, das im Inhalt eines anderen begonnen wurde, muss auch dort abgeschlossen werden."""
+id = "5e9d188f-8149-4cbe-9dfa-e2effa973143"

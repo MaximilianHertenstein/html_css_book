@@ -1,0 +1,11 @@
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """Wo steht die Formatierung einer Website?"""
+prompt.distractors = [
+  """Direkt als sichtbarer Text auf der Seite, zwischen den Absätzen.""",
+  """Nur im `<title>`, dort wird alles gestaltet.""",
+  """Im Dateinamen, zum Beispiel heißt eine blaue Seite `blau.html`.""",
+]
+answer.answer = """In einem separaten Stylesheet. Die Sprache darin heißt CSS."""
+context = """HTML beschreibt den Inhalt, CSS das Aussehen. Über `<link rel="stylesheet" href="style.css">` holst du die Formatierung dazu."""
+id = "867e1684-769f-4745-b784-7f9cfbb9740e"

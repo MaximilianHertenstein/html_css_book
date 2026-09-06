@@ -1,0 +1,11 @@
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """Wie oft darf dieselbe ID wie `p1` auf einer Seite vorkommen?"""
+prompt.distractors = [
+  """Beliebig oft, IDs sind wie Klassen für viele Elemente.""",
+  """Mindestens zehnmal, sonst meckert der Browser.""",
+  """Immer genau zweimal, einmal im HTML und einmal im CSS.""",
+]
+answer.answer = """Nur einmal. Eine ID kennzeichnet genau ein Element."""
+context = """Wenn du mehrere Elemente gleich formatieren willst, nimm eine Klasse statt einer ID."""
+id = "351dc99c-9322-45a2-a295-bc36e9d72f06"

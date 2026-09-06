@@ -1,0 +1,11 @@
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """Was bewirkt der Tag `<tr>` in einer Tabelle?"""
+prompt.distractors = [
+  """Er erzeugt eine einzelne Spalte von oben nach unten.""",
+  """Er erzeugt die gesamte Tabelle auf einmal.""",
+  """Er schreibt die Überschrift des Browsertabs.""",
+]
+answer.answer = """Er grenzt eine Zeile der Tabelle ab. Jede Zeile bekommt ihr eigenes `<tr>`."""
+context = """Der Aufbau ist immer gleich: außen `<table>`, darin `<tr>`-Zeilen, darin `<td>`-Zellen. Zeilen verlaufen waagerecht."""
+id = "2b739cc7-9134-4038-8d44-7432d5dbaf16"

@@ -1,0 +1,11 @@
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """Wozu dient die Zeile `<meta charset="utf-8">`?"""
+prompt.distractors = [
+  """Sie legt die Hintergrundfarbe der Seite fest.""",
+  """Sie schreibt den Titel in den Browsertab.""",
+  """Sie lädt automatisch alle Bilder der Seite.""",
+]
+answer.answer = """Sie legt die Kodierung fest, damit zum Beispiel Umlaute richtig angezeigt werden."""
+context = """Ohne die passende Kodierung erscheinen statt ä, ö und ü seltsame Zeichen. `utf-8` versteht auch Umlaute."""
+id = "fd300946-c0ed-4480-b721-3cd112fe8d28"

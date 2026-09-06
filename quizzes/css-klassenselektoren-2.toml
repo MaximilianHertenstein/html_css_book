@@ -1,0 +1,11 @@
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """Woran erkennst du im CSS, dass `.important` ein Klassenselektor ist?"""
+prompt.distractors = [
+  """An der Raute `#` am Anfang.""",
+  """An spitzen Klammern wie `<important>`.""",
+  """An Anführungszeichen wie `"important"`.""",
+]
+answer.answer = """Am Punkt am Anfang: `.important`."""
+context = """Punkt heißt Klasse (`.important`), Raute heißt ID (`#p1`), ganz ohne Zeichen heißt Typselektor (`p`)."""
+id = "3ff2d89a-3bad-4203-9051-64c1eb34e941"

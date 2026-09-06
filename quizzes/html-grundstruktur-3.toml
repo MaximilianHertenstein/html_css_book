@@ -1,0 +1,11 @@
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """Was zeigt der Inhalt von `<title>`?"""
+prompt.distractors = [
+  """Die größte Überschrift oben auf der Seite.""",
+  """Den Dateinamen der HTML-Datei im Ordner.""",
+  """Gar nichts, `<title>` ist ohne Funktion.""",
+]
+answer.answer = """Den Text des Browsertabs. Auf der Seite selbst sieht man ihn nicht."""
+context = """`<title>` steht im `<head>` und damit im unsichtbaren Teil. Was du als Seitenüberschrift siehst, ist dagegen zum Beispiel ein `<h1>` im `<body>`."""
+id = "3352e81e-286b-4507-94f0-e771c80ee159"

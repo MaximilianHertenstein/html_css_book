@@ -9,3 +9,5 @@ theme = "src/book_theme"
 additional-css = [
     "src/book_theme/playground-html-css.css"
 ]
+
+[preprocessor.quiz]

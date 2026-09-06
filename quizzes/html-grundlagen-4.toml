@@ -1,0 +1,11 @@
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """Was stimmt über den Tag `<br>`?"""
+prompt.distractors = [
+  """Man muss ihn immer mit `</br>` schließen, sonst gibt es einen Fehler.""",
+  """Er braucht einen Inhalt zwischen öffnendem und schließendem Tag.""",
+  """Er erzeugt eine Überschrift der Größe 1 bis 6.""",
+]
+answer.answer = """Es ist ein leeres Element für einen Zeilenumbruch. Es braucht weder Inhalt noch schließenden Tag."""
+context = """Leere Elemente wie `<br>` stehen allein. Sie haben keinen Inhalt, den man einrahmen müsste."""
+id = "cc2a226a-9613-4f7f-b8d2-4b2399463bd6"

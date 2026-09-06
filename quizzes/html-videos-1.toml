@@ -1,0 +1,11 @@
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """Was passiert, wenn du beim `<video>`-Tag `controls` weglässt?"""
+prompt.distractors = [
+  """Das Video wird automatisch breiter.""",
+  """Das Video lädt schneller, aber man sieht es nicht.""",
+  """Der Dateiname des Videos ändert sich.""",
+]
+answer.answer = """Es fehlt die Steuerung. Du kannst das Video dann nicht abspielen."""
+context = """Ohne `controls` zeigt der Browser nur ein stehendes Bild ohne Knöpfe. Mit `controls` bekommst du Start, Pause und Lautstärke."""
+id = "68de2b72-c391-4a73-84f7-bbbccbcf6eb9"

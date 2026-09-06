@@ -1,0 +1,11 @@
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """Welches Attribut nennt beim `<img>`-Tag die Bilddatei?"""
+prompt.distractors = [
+  """`alt`, darin steht der Dateiname.""",
+  """`width`, darin steht der Dateiname.""",
+  """`href`, so wie bei Links.""",
+]
+answer.answer = """`src`, zum Beispiel `src="dog.png"`."""
+context = """`src` heißt Quelle (source). `alt` ist nur der Ersatztext, `width` die Breite. `href` gibt es bei Bildern nicht."""
+id = "a257ebbc-d674-484a-8143-e18a44a39c6b"

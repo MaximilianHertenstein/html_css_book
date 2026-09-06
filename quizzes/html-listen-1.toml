@@ -1,0 +1,11 @@
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """Worin unterscheiden sich `<ol>` und `<ul>`?"""
+prompt.distractors = [
+  """`<ol>` erzeugt eine Liste ohne Nummerierung, `<ul>` eine mit Nummerierung.""",
+  """`<ol>` ist für Bilder da, `<ul>` für Text.""",
+  """Es gibt keinen Unterschied, beide machen genau das Gleiche.""",
+]
+answer.answer = """`<ol>` nummeriert die Einträge durch (ordered list), `<ul>` zeigt Punkte ohne Nummern (unordered list)."""
+context = """Ordered heißt geordnet mit Nummern, unordered ungeordnet mit Punkten. Die Einträge selbst markierst du in beiden mit `<li>`."""
+id = "77b224a0-1304-4872-a748-a5c7494c33af"

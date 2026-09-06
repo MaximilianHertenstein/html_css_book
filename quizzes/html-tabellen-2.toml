@@ -1,0 +1,11 @@
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """Wann nimmst du `<td>` und wann `<th>`?"""
+prompt.distractors = [
+  """`<th>` grenzt eine Zeile ab, `<td>` die ganze Tabelle.""",
+  """Beide sind völlig identisch, man kann sie beliebig tauschen.""",
+  """`<th>` ist nur für Bilder gedacht, `<td>` nur für Zahlen.""",
+]
+answer.answer = """`<td>` ist eine normale Datenzelle, `<th>` ist eine Spaltenüberschrift."""
+context = """Überschriften wie `Land` schreibst du mit `<th>`, die Inhalte darunter wie `USA` mit `<td>`."""
+id = "f04c1792-6828-4686-85f3-60ce1631b83d"

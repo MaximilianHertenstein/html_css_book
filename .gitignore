@@ -1,6 +1,9 @@
 # mdBook-Ausgabe
 book/
 
+# Generiert durch mdbook-quiz (nicht pflegen)
+src/quiz/
+
 # Generiert durch npm run playground (nicht pflegen)
 src/book_theme/playground-bundle.js
 src/book_theme/playground-bundle.*.js

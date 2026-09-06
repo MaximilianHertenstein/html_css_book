@@ -1,0 +1,11 @@
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """Wozu dient das Attribut `alt` bei einem Bild?"""
+prompt.distractors = [
+  """Es legt die Breite des Bildes in Pixeln fest.""",
+  """Es schreibt automatisch eine Bildunterschrift unter jedes Bild.""",
+  """Es macht das Bild anklickbar wie einen Link.""",
+]
+answer.answer = """Es liefert einen Ersatztext, der erscheint, wenn das Bild nicht geladen werden kann."""
+context = """`alt` sieht man normalerweise gar nicht. Erst wenn die Datei fehlt oder langsam lädt, zeigt der Browser diesen Text, zum Beispiel `alt="Ein süßer Hund"`."""
+id = "0e6005ce-8a33-4cf6-a2cd-7fba54944a15"

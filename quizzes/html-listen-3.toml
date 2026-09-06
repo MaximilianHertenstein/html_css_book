@@ -1,0 +1,11 @@
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """Du willst drei Länder als nummerierte Liste anzeigen. Was gehört um die `<li>`-Einträge herum?"""
+prompt.distractors = [
+  """Ein `<p>`-Tag reicht, Absätze werden automatisch nummeriert.""",
+  """Ein `<table>`-Tag, Listen sind Tabellen.""",
+  """Gar nichts, `<li>`-Einträge funktionieren auch allein.""",
+]
+answer.answer = """Ein `<ol>`-Tag (oder `<ul>` für Punkte). Die `<li>`-Einträge stehen immer innerhalb einer Liste."""
+context = """Ohne `<ol>` oder `<ul>` weiß der Browser nicht, dass es eine Liste ist. Das Gerüst lautet: `<ol>` außen, `<li>`-Einträge innen."""
+id = "4704527c-71cc-4fa6-9d36-0f301779029a"

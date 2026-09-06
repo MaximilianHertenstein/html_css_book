@@ -1,0 +1,11 @@
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """Die Datei `blume.mp4` liegt im selben Ordner wie deine HTML-Datei. Wie bindest du sie richtig ein?"""
+prompt.distractors = [
+  """Mit dem Bild-Tag: `<img src="blume.mp4">`""",
+  """Es geht nur mit einer vollständigen Internetadresse, lokale Dateien gehen nicht.""",
+  """Es reicht, `blume.mp4` als normalen Text auf die Seite zu schreiben.""",
+]
+answer.answer = """Mit `<video src="blume.mp4" controls width="300"></video>`."""
+context = """Lokale Dateien funktionieren genau wie Internetdateien, nur steht statt der Adresse der Dateiname in `src`. Videos brauchen `<video>`, nicht `<img>`."""
+id = "636479db-1844-4ca0-b104-1fe061a1de0d"

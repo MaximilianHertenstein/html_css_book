@@ -1,0 +1,11 @@
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """Braucht `<img>` einen schließenden Tag?"""
+prompt.distractors = [
+  """Ja, `</img>` ist Pflicht, sonst erscheint kein Bild.""",
+  """Ja, aber nur wenn das Bild aus dem Internet kommt.""",
+  """Ja, Bilder funktionieren nur innerhalb von `<body>` mit eigenem Schlusstag."""
+]
+answer.answer = """Nein, `<img>` ist ein leeres Element ohne Inhalt und ohne schließenden Tag."""
+context = """So wie `<br>` steht `<img>` allein. Alle Infos stecken in den Attributen `src`, `alt` und `width`."""
+id = "5a7e5492-e2c6-4920-8780-b3677c08aaa4"

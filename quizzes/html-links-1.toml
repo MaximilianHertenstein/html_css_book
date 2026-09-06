@@ -1,0 +1,11 @@
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """Bei `<a href="https://de.wikipedia.org"> Wiki </a>`: Was bestimmt, wohin der Link führt?"""
+prompt.distractors = [
+  """Der sichtbare Text `Wiki` bestimmt das Ziel.""",
+  """Schon das Tag `<a>` allein weiß, wohin es geht.""",
+  """Das Attribut `target` bestimmt das Ziel.""",
+]
+answer.answer = """Das Attribut `href` mit seinem Wert, hier `"https://de.wikipedia.org"`."""
+context = """Der Text zwischen den Tags ist nur die Beschriftung. Das Ziel steckt in `href`. `target` legt dagegen nur fest, wo sich der Link öffnet."""
+id = "63252407-89c7-409c-b7ff-47eed8397c64"

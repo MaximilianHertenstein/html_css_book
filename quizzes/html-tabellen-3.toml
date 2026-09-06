@@ -1,0 +1,11 @@
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """Wo muss ein `<th>`-Element stehen?"""
+prompt.distractors = [
+  """Direkt in `<table>`, ohne `<tr>` drumherum.""",
+  """Außerhalb der Tabelle, vor dem `<table>`-Tag.""",
+  """Im `<head>` des HTML-Grundgerüsts.""",
+]
+answer.answer = """Innerhalb eines `<tr>`-Elements, so wie jede andere Zelle auch."""
+context = """Auch Überschriften sind Zellen einer Zeile. Deshalb stehen sie in einem `<tr>`, zum Beispiel in der ersten Zeile der Tabelle."""
+id = "3ecd17ea-e87e-4456-9900-aa60003994d8"

@@ -1,0 +1,11 @@
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """Wohin gehört die Zeile `<link rel="stylesheet" href="style.css">`?"""
+prompt.distractors = [
+  """In den `<body>`, mitten zwischen die Absätze.""",
+  """Ganz ans Ende, nach `</html>`.""",
+  """In die CSS-Datei selbst, ganz oben.""",
+]
+answer.answer = """In den `<head>` des HTML-Grundgerüsts."""
+context = """Der `<head>` sammelt unsichtbare Infos über die Seite, dazu gehört auch der Verweis auf die CSS-Datei."""
+id = "6f6da977-830a-4398-ae36-c4e293514f08"

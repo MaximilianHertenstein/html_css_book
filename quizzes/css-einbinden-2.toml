@@ -1,0 +1,11 @@
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """Du hast `style.css` geschrieben, aber die `<link>`-Zeile im HTML vergessen. Was passiert?"""
+prompt.distractors = [
+  """Die Seite lädt gar nicht mehr, der Browser zeigt einen Fehler.""",
+  """Alle HTML-Tags funktionieren nicht mehr.""",
+  """Alle Bilder verschwinden von der Seite.""",
+]
+answer.answer = """Die Seite sieht unformatiert aus. Das CSS wird nicht angewendet."""
+context = """Ohne `<link>` weiß der Browser nichts von deiner CSS-Datei. Der Inhalt ist noch da, aber ohne Farben und Formatierung."""
+id = "f5cd8fdd-ba2a-46c1-a545-4a6bca55718e"

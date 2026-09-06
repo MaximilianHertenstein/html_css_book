@@ -1,0 +1,11 @@
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """Woraus besteht das Element `<p>Hallo</p>`?"""
+prompt.distractors = [
+  """Nur aus den zwei Tags `<p>` und `</p>`, der Text dazwischen gehört nicht dazu.""",
+  """Aus einem Tag und einem Attribut, so wie bei Links mit `href`.""",
+  """Nur aus dem Text `Hallo`, die Tags in spitzen Klammern sind Deko.""",
+]
+answer.answer = """Aus dem öffnenden Tag `<p>`, dem Inhalt `Hallo` und dem schließenden Tag `</p>`."""
+context = """Zwischen öffnendem und schließendem Tag steht immer der Inhalt des Elements. Die Tags geben dem Inhalt seine Bedeutung, hier: ein eigener Absatz."""
+id = "215d7857-38b3-413d-afe6-aabcce1f3586"
