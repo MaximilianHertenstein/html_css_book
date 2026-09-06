@@ -2,12 +2,10 @@
 
 ## Grundlagen
 
-Jedes HTML-Element ist ein Rechteck. Zu dem Rechteck gehören
-der Inhalt und der Rahmen des Elements.
-Die Farbe des Rahmens kann wie dei Schriftfarbe verändert werden.
-Die Breite des Rahmens kann mit der Eigenschaft `pixel` geändert werden.
-Wie alle Längenangaben in diesem Kapitel muss diese in Pixeln (`px`) gemacht werden.
-`solid`  wird benötigt, damit der Rahmen pberhaupt angezeigt wird.
+Jedes HTML-Element ist ein Rechteck. Das Rechteck besteht aus dem Inhalt und dem Rahmen des Elements.
+
+Mit `border` legst du den Rahmen fest. Das Beispiel zeigt einen 5 Pixel breiten, durchgezogenen (`solid`) roten Rahmen.
+Ohne `solid` siehst du keinen Rahmen. Die Farbe funktioniert wie bei `color`.
 
 <playground-html-css>
 
@@ -24,9 +22,11 @@ p {
 
 </playground-html-css>
 
-## Border
+## Innenabstand mit `padding`
 
-Die Eigenschaft `padding` ist der Abstand von Inhalt und Rahmen des Elements.
+Mit `padding` legst du den Abstand zwischen Inhalt und Rahmen fest. 
+Alle Längenangaben in diesem Kapitel gibst du in Pixeln (`px`) an.
+
 
 <playground-html-css>
 
@@ -44,9 +44,10 @@ p {
 
 </playground-html-css>
 
-## Margin
+## Außenabstand mit `margin`
 
-Die Eigenscahft `margin` ist der Außenabstand eines Elements zum nächsten Element oder zum Seitenende
+Mit `margin` legst du den Abstand nach außen fest, also zum nächsten Element oder zum Seitenrand.
+Im Beispiel hat der Absatz (`p`) rundherum 30 Pixel Abstand.
 
 
 
