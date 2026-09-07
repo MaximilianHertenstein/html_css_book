@@ -35,10 +35,11 @@ die Vorschau passt sich der gerenderten Seite an
 
 ## Voraussetzungen, Installation, Befehle
 
-Benötigt: [mdBook](https://rust-lang.github.io/mdBook/), Node.js + npm.
+Benötigt: [mdBook](https://rust-lang.github.io/mdBook/), [mdbook-quiz](https://github.com/cognitive-engineering-lab/mdbook-quiz), Node.js + npm.
 
 ```bash
 npm install     # playground-elements + esbuild installieren
+cargo install mdbook-quiz --locked  # Quiz-Preprocessor für mdBook installieren
 npm run serve   # Vorschauserver (http://localhost:3000)
 npm run build   # fertiges Buch in book/
 ```

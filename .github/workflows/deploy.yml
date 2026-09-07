@@ -37,14 +37,14 @@ jobs:
         with:
           mdbook-version: latest
 
+      - name: mdbook-quiz installieren
+        run: cargo install mdbook-quiz --locked
+
       - name: npm-Abhängigkeiten installieren
         run: npm ci
 
-      - name: Playground-Bundle bauen
+      - name: Playground-Bundle und mdBook bauen
         run: npm run build
-
-      - name: mdBook bauen
-        run: mdbook build
 
       - name: .nojekyll erstellen
         run: touch book/.nojekyll
