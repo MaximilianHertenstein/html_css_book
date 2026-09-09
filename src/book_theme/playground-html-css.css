@@ -18,10 +18,8 @@ playground-preview.playground-html-css-preview {
   border-top: var(--playground-border);
 }
 
-
 img[src$=".svg"] {
-    background-color: white;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
+  background: #fff;
+  display: block;
+  margin: 0 auto;
 }

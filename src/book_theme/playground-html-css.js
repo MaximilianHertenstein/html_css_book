@@ -1,14 +1,13 @@
-// <playground-html-css>: interaktive HTML/CSS-Beispiele (Editoren + Vorschau)
-// Unterstützt Mehrdatei-Projekte:
+// <playground-html-css>: interaktive HTML/CSS-Beispiele (Editoren + Vorschau).
 //   <script type="sample/html" filename="index.html"> ... </script>
-//   <script type="sample/html" filename="subpage.html"> ... </script>
-// Ohne filename greifen Defaults (index.html / style.css / script.js).
-// Dateien werden 1:1 ins Projekt übernommen (kein Auto-Link).
+//   <script type="sample/css" filename="style.css"> ... </script>
+// Ohne filename gelten index.html / style.css; mehrere Dateien (z.B.
+// index.html + subpage.html) werden 1:1 ins Projekt übernommen (kein Auto-Link).
+// Vorschau wächst mit dem gerenderten Inhalt mit (Deckel per CSS/JS).
 const EDITOR_MAX = 400, PREVIEW_MAX = 600, TOOLBAR = 41; // Toolbar von <playground-preview>
 
 const clamp = (v, m) => Math.min(Math.ceil(v), m);
 const el = (tag, props = {}) => Object.assign(document.createElement(tag), props);
-const DEFAULT_NAME = { html: "index.html", css: "style.css", js: "script.js" };
 
 class PlaygroundHtmlCss extends HTMLElement {
   connectedCallback() {
@@ -19,60 +18,39 @@ class PlaygroundHtmlCss extends HTMLElement {
     if (!sources.length)
       return console.error("<playground-html-css> enthält weder HTML noch CSS.");
 
-    // Sammeln + Defaults + Duplikate auflösen.
-    const seen = new Set();
-    const files = [];
-    for (const s of sources) {
-      const type = s.getAttribute("type");
-      const kind = type.split("/")[1]; // html | css | js | ...
-      if (!["html", "css", "js"].includes(kind)) continue;
-      let name = s.getAttribute("filename") || DEFAULT_NAME[kind] || `file-${files.length}.${kind}`;
-      if (seen.has(name)) {
-        const dot = name.lastIndexOf(".");
-        const base = dot > 0 ? name.slice(0, dot) : name;
-        const ext = dot > 0 ? name.slice(dot) : "";
-        let i = 2;
-        while (seen.has(`${base}-${i}${ext}`)) i++;
-        name = `${base}-${i}${ext}`;
-      }
-      seen.add(name);
-      const code = (s.textContent || "").trim();
-      files.push({ name, code, type, kind });
-    }
-    if (!files.length)
-      return console.error("<playground-html-css> enthält keine unterstützten Dateien.");
-
     const project = el("playground-project", {
       sandboxBaseUrl: new URL("../playground/", import.meta.url).href,
     });
 
     const box = el("div", { className: "playground-html-css-editors" });
     const editors = [];
-    for (const f of files) {
-      const code = f.code;
-      const file = el("script", { type: f.type, textContent: code });
-      file.setAttribute("filename", f.name);
+    let entry;
+    for (const s of sources) {
+      const kind = s.getAttribute("type").split("/")[1];
+      if (kind !== "html" && kind !== "css") continue;
+      const name = s.getAttribute("filename") || (kind === "html" ? "index.html" : "style.css");
+      if (kind === "html" && (name === "index.html" || !entry)) entry = name;
+
+      const code = s.textContent.trim();
+      const file = el("script", { type: s.type, textContent: code });
+      file.setAttribute("filename", name);
       project.appendChild(file);
 
-      const editor = el("playground-file-editor", { project, filename: f.name, lineNumbers: true });
+      const editor = el("playground-file-editor", { project, filename: name, lineNumbers: true });
       editor.style.height = `${clamp(code.split("\n").length * 20 + 16, EDITOR_MAX)}px`; // Startwert bis zur Messung
       editors.push(editor);
-
-      const section = el("div", { innerHTML: `<div class="playground-html-css-header">${f.name}</div>` });
+      const section = el("div", { innerHTML: `<div class="playground-html-css-header">${name}</div>` });
       section.appendChild(editor);
       box.appendChild(section);
     }
+    if (!box.children.length)
+      return console.error("<playground-html-css> enthält keine unterstützten Dateien.");
+
+    const preview = el("playground-preview", { project, className: "playground-html-css-preview" });
+    preview.setAttribute("html-file", entry || "index.html");
 
     const root = el("div", { className: "playground-html-css" });
-    root.appendChild(box);
-    const htmlFiles = files.filter((f) => f.kind === "html");
-    const entry = htmlFiles.find((f) => f.name === "index.html") || htmlFiles[0];
-    const preview = entry ? el("playground-preview", { project, className: "playground-html-css-preview" }) : null;
-    if (preview) {
-      preview.setAttribute("html-file", entry.name);
-      root.appendChild(preview);
-    }
-
+    root.append(box, preview);
     this.replaceChildren(project, root);
 
     // Höhen nachführen. "input" bubbelt aus dem Shadow-DOM heraus ("change" täte
@@ -97,7 +75,7 @@ class PlaygroundHtmlCss extends HTMLElement {
           editor.style.height = `${wanted}px`;
         }
       }
-      const frame = preview?.iframe;
+      const frame = preview.iframe;
       if (frame) {
         frame.addEventListener("load", fit);
         let height = 0;

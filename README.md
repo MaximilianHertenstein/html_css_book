@@ -28,7 +28,7 @@ h1 {
 Je ein `script`-Tag pro Sprache genügt. Daraus werden automatisch
 HTML-Editor, CSS-Editor und darunter die Live-Vorschau aufgebaut
 (Custom-Layout aus `playground-project`, `playground-file-editor`, `playground-preview`).
-CSS wird automatisch als `style.css` eingebunden — im Markdown ist kein `<link>` nötig.
+Dateien landen 1:1 im Projekt — CSS per `<link rel="stylesheet" href="style.css">` einbinden.
 Jeder Editor sitzt auf seinem Inhalt (knapp darüber, ohne zu springen);
 die Vorschau passt sich der gerenderten Seite an
 (Deckel: 400px bzw. 600px, danach mit Scrollbalken).
