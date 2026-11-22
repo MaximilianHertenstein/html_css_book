@@ -4,7 +4,7 @@
 
 In Word sieht das Dokument, das man bearbeitet, genauso aus wie eine PDF, die man damit erzeugt.
 
-![Word-Dokument mit Bearbeitungsansicht](/images/html-grundlagen/word.png)
+![Word-Dokument mit Bearbeitungsansicht](images/html-grundlagen/word.png)
 Quelle: <https://de.wikipedia.org/wiki/Datei:Ooowysiwyg.png>
 
 
@@ -38,7 +38,7 @@ schließender Tag. Bei diesem steht nach der ersten spitzen Klammer noch
 ein Schrägstrich (z. B. `</p>`). Zwischen den beiden Tags steht der Inhalt
 des Elements.
 
-![Aufbau eines HTML-Elements aus öffnendem Tag, Inhalt und schließendem Tag](/images/html-grundlagen/equation.svg)
+![Aufbau eines HTML-Elements aus öffnendem Tag, Inhalt und schließendem Tag](images/html-grundlagen/equation.svg)
 
 Elemente, die weder Inhalt noch einen schließenden Tag benötigen, nennt
 man leere Elemente. Ein Beispiel dafür ist das Tag `<br>`. Dieses steht

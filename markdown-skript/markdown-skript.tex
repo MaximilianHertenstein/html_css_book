@@ -1,0 +1,313 @@
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[default]{fontsetup}
+
+\usepackage[ngerman]{babel}
+\usepackage{geometry}
+\geometry{top=2.6cm,bottom=2.8cm,left=2.7cm,right=2.7cm}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{listings}
+\usepackage{booktabs}
+\usepackage{hyperref}
+\usepackage{microtype}
+
+\definecolor{codebg}{RGB}{243,243,243}
+\definecolor{linkblue}{RGB}{20,80,122}
+\definecolor{resultbg}{RGB}{239,247,251}
+\definecolor{resultborder}{RGB}{20,80,122}
+
+\hypersetup{
+  %colorlinks=true,
+%  urlcolor=linkblue,
+%  linkcolor=linkblue,
+  pdftitle={Markdown-Grundlagen},
+  pdfauthor={Maximilian Hertenstein}
+}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.55em}
+\setlength{\emergencystretch}{2em}
+
+\lstdefinestyle{md}{
+  basicstyle=\ttfamily\small,
+  backgroundcolor=\color{codebg},
+  frame=single,
+  framerule=0pt,
+  rulecolor=\color{codebg},
+  framesep=6pt,
+  xleftmargin=8pt,
+  xrightmargin=8pt,
+  columns=fullflexible,
+  keepspaces=true,
+  showstringspaces=false,
+  breaklines=true,
+  breakindent=0pt,
+  aboveskip=0.8em,
+  belowskip=0.8em
+}
+\lstset{style=md}
+
+\newcommand{\Ergebnis}[1]{%
+  \par\smallskip
+  \noindent
+  {\setlength{\fboxsep}{8pt}%
+   \fcolorbox{resultborder}{resultbg}{%
+     \parbox{\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax}{%
+       \textbf{Ergebnis}\par
+       #1%
+     }%
+   }%
+  }%
+  \par\smallskip
+}
+
+\title{Markdown-Grundlagen}
+\author{Maximilian Hertenstein}
+\date{}
+
+\begin{document}
+
+\maketitle
+\tableofcontents
+\newpage
+
+\section{Grundlagen}
+
+Markdown ist eine Auszeichnungssprache für reinen Text. Du markierst Überschriften, Links und Bilder mit Zeichen im Text. Ein Programm setzt den Text in formatierte Seiten um.
+
+\subsection{Absätze und Zeilenumbrüche}
+
+Eine Leerzeile trennt zwei Absätze.
+
+\begin{lstlisting}
+Erster Absatz.
+
+Zweiter Absatz.
+\end{lstlisting}
+
+Ein einzelner Zeilenumbruch im Quelltext ändert nichts. Mehrere Leerzeichen erscheinen auf der fertigen Seite als ein Leerzeichen.
+
+Für einen Zeilenumbruch mitten im Absatz setzt du einen Backslash ans Zeilenende.
+
+\begin{lstlisting}
+Markdown ist super!\
+und wichtig!
+\end{lstlisting}
+
+\Ergebnis{Markdown ist super!\\und wichtig!}
+
+\subsection{Überschriften}
+
+Überschriften schreibst du mit Rauten. Eine Raute ist die oberste Ebene, zwei Rauten die zweite, bis hin zu sechs Rauten für die kleinste Überschrift.
+
+\begin{lstlisting}
+# Überschrift 1
+## Überschrift 2
+### Überschrift 3
+#### Überschrift 4
+##### Überschrift 5
+###### Überschrift 6
+\end{lstlisting}
+
+\Ergebnis{{\LARGE\bfseries Überschrift 1\par}\smallskip
+{\Large\bfseries Überschrift 2\par}\smallskip
+{\large\bfseries Überschrift 3\par}\smallskip
+{\normalsize\bfseries Überschrift 4\par}\smallskip
+{\small\bfseries Überschrift 5\par}\smallskip
+{\footnotesize\bfseries Überschrift 6}}
+
+Zwischen Raute und Text muss ein Leerzeichen stehen. Sonst erkennt Markdown keine Überschrift.
+
+\subsection{Fett und Kursiv}
+
+Fett setzt du in zwei Sternchen, kursiv in eines.
+
+\begin{lstlisting}
+**fetter Text**
+*kursiver Text*
+***fett und kursiv***
+\end{lstlisting}
+
+\Ergebnis{\textbf{fetter Text}\\\textit{kursiver Text}\\\textbf{\textit{fett und kursiv}}}
+
+\subsection{Verschachtelte Auszeichnung}
+
+Bei verschachtelter Auszeichnung müssen die Sternchenpaare zusammenpassen.
+
+\begin{lstlisting}
+**Markdown macht *Spaß***
+\end{lstlisting}
+
+Das äußere Paar macht den ganzen Satz fett. Das innere Paar stellt \textit{Spaß} zusätzlich kursiv dar.
+
+\Ergebnis{\textbf{Markdown macht \textit{Spaß}}}
+
+\section{Kommentare}
+
+Markdown hat keine eigene Kommentarsyntax. Ein HTML-Kommentar beginnt mit \verb|<!--| und endet mit \verb|-->|:
+
+\begin{lstlisting}
+Dieser Text ist auf der Website sichtbar.
+
+<!-- Dieser Text steht nur im Quelltext. -->
+\end{lstlisting}
+
+\Ergebnis{Dieser Text ist auf der Website sichtbar.}
+
+Der Kommentar erscheint nicht auf der fertigen Seite. Im Quelltext bleibt er stehen.
+
+\section{Listen}
+
+Ein Bindestrich mit anschließendem Leerzeichen beginnt einen Listenpunkt.
+
+\subsection{Listen ohne Nummerierung}
+
+\begin{lstlisting}
+- Europa
+- Asien
+- Afrika
+\end{lstlisting}
+
+\Ergebnis{\begin{itemize}
+  \item Europa
+  \item Asien
+  \item Afrika
+\end{itemize}}
+
+\subsection{Listen mit Nummerierung}
+
+\begin{lstlisting}
+1. USA
+1. VR China
+1. Japan
+\end{lstlisting}
+
+Markdown nummeriert die Punkte automatisch.
+
+\Ergebnis{\begin{enumerate}
+  \item USA
+  \item VR China
+  \item Japan
+\end{enumerate}}
+
+\subsection{Verschachtelte Listen}
+
+\begin{lstlisting}
+- Europa
+  - Deutschland
+  - Frankreich
+- Asien
+  - Japan
+\end{lstlisting}
+
+\Ergebnis{\begin{itemize}
+  \item Europa
+    \begin{itemize}
+      \item Deutschland
+      \item Frankreich
+    \end{itemize}
+  \item Asien
+    \begin{itemize}
+      \item Japan
+    \end{itemize}
+\end{itemize}}
+
+Zwei Leerzeichen reichen für die Unterliste. Alle Punkte der Unterliste müssen gleich weit eingerückt sein.
+
+\section{Tabellen}
+
+Die Zellen einer Tabelle schreibst du mit senkrechten Strichen.
+
+\begin{lstlisting}
+| Land     | BIP in Mrd. |
+|----------|------------:|
+| USA      | 21.433      |
+| VR China | 15.732      |
+| Japan    | 5.080       |
+\end{lstlisting}
+
+Die erste Zeile enthält die Spaltenüberschriften. Die zweite Zeile trennt Überschriften und Daten. Schreibe mindestens drei Striche pro Spalte in die Trennzeile. Eine Tabelle ohne Kopfzeile gibt es in GFM nicht. Du kannst die Kopfzellen leer lassen.
+
+Der Doppelpunkt am Ende der Trennzeile richtet die Spalte rechtsbündig aus. So lassen sich Zahlen besser vergleichen.
+
+\Ergebnis{\begin{tabular}{lr}
+\toprule
+Land & BIP in Mrd. \\
+\midrule
+USA & 21.433 \\
+VR China & 15.732 \\
+Japan & 5.080 \\
+\bottomrule
+\end{tabular}}
+
+Verbundene Zellen unterstützt Markdown nicht.
+
+\section{Links}
+
+\begin{lstlisting}
+[Wiki](https://de.wikipedia.org)
+\end{lstlisting}
+
+Der Text in eckigen Klammern wird angezeigt. Die Adresse steht in runden Klammern.
+
+\Ergebnis{\href{https://de.wikipedia.org}{Wiki}}
+
+Ein Titel ist optional und erscheint als Tooltip:
+
+\begin{lstlisting}
+[Wiki](https://de.wikipedia.org "Wikipedia")
+\end{lstlisting}
+
+\section{Bilder}
+
+Ein Bild bekommt ein Ausrufezeichen vor die eckigen Klammern.
+
+\begin{lstlisting}
+![Ein süßer Hund](dog.png)
+\end{lstlisting}
+
+Der Text in den eckigen Klammern ist der Alternativtext. Er erscheint, wenn das Bild nicht geladen wird, und wird von Screenreadern vorgelesen.
+
+Der Pfad ist relativ zur Markdown-Datei. \verb|dog.png| liegt im selben Ordner wie dieses Skript.
+
+\Ergebnis{\includegraphics[width=4.5cm]{dog.png}}
+
+Als Bildquelle kannst du auch eine Webadresse angeben:
+
+\begin{lstlisting}
+![Ein süßer Hund](https://upload.wikimedia.org/wikipedia/commons/2/2f/My_Cute_dog%28MOTE%29_2014-05-08_08-04.JPG)
+\end{lstlisting}
+
+Mit dieser Markdown-Syntax kannst du keine feste Breite angeben. Die Bilddatei und das Seitenlayout bestimmen die Größe.
+
+Du kannst ein Bild auch verlinken. Dazu setzt du den Bildcode in die eckigen Klammern eines Links:
+
+\begin{lstlisting}
+[![Ein süßer Hund](dog.png)](https://de.wikipedia.org)
+\end{lstlisting}
+
+\newpage
+\section*{Übersicht}
+
+Die wichtigsten Entsprechungen aus den sechs Kapiteln:
+
+\begin{tabular}{@{}p{4cm}p{10.8cm}@{}}
+\toprule
+Thema & Markdown \\
+\midrule
+Absatz & \texttt{Text}, Leerzeile, \texttt{Text} \\
+Zeilenumbruch & \texttt{\textbackslash} am Zeilenende \\
+Überschrift & \texttt{\#} bis \texttt{\#\#\#\#\#\#} vor dem Text \\
+Fett & \texttt{**\ldots**} \\
+Kursiv & \texttt{*\ldots*} \\
+Kommentar & \texttt{\textless{}!-\/- \ldots{} -\/-\textgreater{}} \\
+Unnummerierte Liste & \texttt{- Text} \\
+Nummerierte Liste & \texttt{1. Text} \\
+Tabelle & Zeilen mit \texttt{\textbar{}} und eine Trennzeile \\
+Link & \texttt{[Text](Ziel)} \\
+Bild & \texttt{![Alt](Bild.png)} \\
+\bottomrule
+\end{tabular}
+
+\end{document}
